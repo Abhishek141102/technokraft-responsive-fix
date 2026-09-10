@@ -50,7 +50,7 @@ export const Footer: React.FC<FooterProps> = ({
               {/* Instagram */}
 
               <a
-                href="https://www.instagram.com/technokraft_tts"
+                href="https://www.instagram.com/technokraft_services"
                 aria-label="Instagram"
                 className="w-8 h-8 rounded-md bg-slate-800/80 hover:bg-blue-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
               >

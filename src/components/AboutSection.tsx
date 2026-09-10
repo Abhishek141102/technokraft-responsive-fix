@@ -69,7 +69,7 @@ const LEADERSHIP_TEAM = [
 
 const TEAM_SOCIAL_LINKS = {
   facebook: 'https://www.facebook.com/tts.net.in/',
-  instagram: 'https://www.instagram.com/technokraft_tts',
+  instagram: 'https://www.instagram.com/technokraft_services/',
   linkedin: 'https://www.linkedin.com/company/ttsnashik/',
 };
 
