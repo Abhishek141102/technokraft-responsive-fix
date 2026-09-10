@@ -3,11 +3,13 @@ import { PageRoute } from "../types";
 
 interface FooterProps {
   onNavigate: (page: PageRoute) => void;
+  onServiceNavigate: (slug: string) => void;
   onOpenContact: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onNavigate,
+  onServiceNavigate,
   onOpenContact,
 }) => {
   return (
@@ -99,74 +101,87 @@ export const Footer: React.FC<FooterProps> = ({
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">
               Services
             </h3>
+
             <ul className="space-y-2.5 text-xs text-slate-400">
               <li>
                 <button
-                  onClick={() => onNavigate("home")}
+                  onClick={() =>
+                    onServiceNavigate("custom-software-development")
+                  }
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Custom Software Development
                 </button>
               </li>
+
               <li>
                 <button
-                  onClick={() => onNavigate("home")}
+                  onClick={() => onServiceNavigate("custom-erp-development")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Custom ERP Development
                 </button>
               </li>
+
               <li>
                 <button
-                  onClick={() => onNavigate("home")}
+                  onClick={() =>
+                    onServiceNavigate("inventory-management-software")
+                  }
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Inventory Management
                 </button>
               </li>
+
               <li>
                 <button
-                  onClick={() => onNavigate("home")}
+                  onClick={() => onServiceNavigate("web-development")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Web Application Development
                 </button>
               </li>
+
               <li>
                 <button
-                  onClick={() => onNavigate("home")}
+                  onClick={() => onServiceNavigate("mobile-app-development")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Mobile App Development
                 </button>
               </li>
+
               <li>
                 <button
-                  onClick={() => onNavigate("home")}
+                  onClick={() => onServiceNavigate("cloud-devops")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Cloud & DevOps Engineering
                 </button>
               </li>
+
               <li>
                 <button
-                  onClick={() => onNavigate("home")}
+                  onClick={() => onServiceNavigate("cybersecurity-vapt")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Cybersecurity & VAPT Audits
                 </button>
               </li>
+
               <li>
                 <button
-                  onClick={() => onNavigate("home")}
+                  onClick={() => onServiceNavigate("ai-machine-learning")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   AI & Machine Learning
                 </button>
               </li>
+
               <li>
                 <button
-                  onClick={() => onNavigate("home")}
+                  onClick={() => onServiceNavigate("nashik-software-services")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Nashik Software Services

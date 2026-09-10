@@ -156,6 +156,7 @@ export default function App() {
       {/* Global Dark Theme Footer */}
       <Footer
         onNavigate={handleNavigate}
+        onServiceNavigate={handleServiceNavigate}
         onOpenContact={() => setIsConsultationOpen(true)}
       />
 
