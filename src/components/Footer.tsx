@@ -24,7 +24,7 @@ export const Footer: React.FC<FooterProps> = ({
               className="flex items-center cursor-pointer group"
             >
               <img
-                src="/assets/tts_logo.png"
+                src={`${(import.meta as ImportMeta & { env?: { BASE_URL?: string } }).env?.BASE_URL ?? "/"}assets/tts_logo.png`}
                 alt="TechnoKraft Services LLP"
                 className="h-9 w-auto"
               />
