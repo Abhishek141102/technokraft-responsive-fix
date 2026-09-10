@@ -15,16 +15,17 @@ import { AboutSection } from "./components/AboutSection";
 import { ContactSection } from './components/ContactSection';
 
 export default function App() {
-  // Parse initial route from pathname or hash if available
+  // GitHub Pages-compatible routing using the URL hash.
+  // This prevents /our-work, /case-study, /about and /contact
+  // from returning a 404 when the page is refreshed.
   const getInitialRoute = (): PageRoute => {
-    const path = window.location.pathname;
-    const hash = window.location.hash;
-    if (path.includes("case-study") || hash.includes("case-study"))
-      return "case-study";
-    if (path.includes("our-work") || hash.includes("our-work"))
-      return "our-work";
-    if (path.includes("about") || hash.includes("about")) return "about";
-    if (path.includes("contact") || hash.includes("contact")) return "contact";
+    const hash = window.location.hash.toLowerCase();
+
+    if (hash.includes("case-study")) return "case-study";
+    if (hash.includes("our-work")) return "our-work";
+    if (hash.includes("about")) return "about";
+    if (hash.includes("contact")) return "contact";
+
     return "home";
   };
 
@@ -48,10 +49,13 @@ export default function App() {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    // Update history without hard reload
-    const path = page === "home" ? "/" : `/${page}`;
-    if (window.location.pathname !== path) {
-      window.history.pushState({}, "", path);
+    // Use hash routing for GitHub Pages.
+    // GitHub Pages does not provide SPA fallback for paths such as
+    // /our-work, /case-study, /about or /contact.
+    const hash = page === "home" ? "#/" : `#/${page}`;
+
+    if (window.location.hash !== hash) {
+      window.history.pushState({}, "", hash);
     }
   };
 
