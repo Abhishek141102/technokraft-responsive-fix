@@ -8,7 +8,7 @@ export const MetricsBar: React.FC = () => {
       className="bg-[#0B0F19] text-white py-14 border-y border-slate-800"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-10 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-x-10 gap-y-10 text-center max-w-5xl mx-auto">
           {STATS_METRICS.map((stat, idx) => (
             <div
               key={stat.label}

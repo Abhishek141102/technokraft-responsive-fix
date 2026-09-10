@@ -13,6 +13,7 @@ import { Footer } from "./components/Footer";
 import { ConsultationModal } from "./components/ConsultationModal";
 import { AboutSection } from "./components/AboutSection";
 import { ContactSection } from './components/ContactSection';
+import { GetInTouchSection } from "./components/GetInTouchSection";
 
 export default function App() {
   // GitHub Pages-compatible routing using the URL hash.
@@ -95,6 +96,7 @@ export default function App() {
               onNavigate={handleNavigate}
               onSelectIndustry={handleSelectIndustry}
             />
+            <GetInTouchSection />
           </>
         )}
 

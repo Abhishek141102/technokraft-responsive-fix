@@ -94,11 +94,10 @@ export const FRAMEWORK_STEPS: FrameworkStep[] = [
 ];
 
 export const STATS_METRICS: MetricItem[] = [
-  { value: '15+', label: 'Years of Excellence' },
-  { value: '500+', label: 'Projects Delivered' },
-  { value: '200+', label: 'Happy Clients' },
-  { value: '98%', label: 'Client Retention' },
-  { value: '50+', label: 'Experts & Innovators' },
+  { value: '12+', label: 'Years of Excellence' },
+  { value: '50+', label: 'Projects Delivered' },
+  { value: '150+', label: 'Happy Clients' },
+  { value: '24/7', label: 'Dedicated Support' },
 ];
 
 export const INDUSTRIES_DATA: IndustryItem[] = [

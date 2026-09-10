@@ -104,15 +104,17 @@ export const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Kanchwala%20Avenue%20College%20Road%20Nashik%20Maharashtra%20422005"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
-            >
-              View location on Google Maps
-              <ArrowRight className="w-4 h-4" />
-            </a>
+            {/* Google Maps Preview */}
+            <div className="mt-5 w-full overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+              <iframe
+                title="TechnoKraft Services LLP Location"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d374.5721994456583!2d73.76372274615402!3d20.006360139964965!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeb9bbe9b8d51%3A0x198c21864b858779!2sTechnoKraft%20Training%20%26%20Solution%20PVT%20LTD!5e1!3m2!1sen!2sus!4v1789020336666!5m2!1sen!2sus"
+                className="w-full h-48 sm:h-56 border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
           </div>
 
           {/* Contact form */}
