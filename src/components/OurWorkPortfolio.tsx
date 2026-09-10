@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from "react";
 import {
   ChevronRight,
   Filter,
@@ -9,9 +9,25 @@ import {
   Sparkles,
   Search,
   ExternalLink,
-} from 'lucide-react';
-import { PageRoute, ProjectCard } from '../types';
-import { PORTFOLIO_PROJECTS, TESTIMONIALS } from '../data/mockData';
+} from "lucide-react";
+import { PageRoute, ProjectCard } from "../types";
+import { PORTFOLIO_PROJECTS, TESTIMONIALS } from "../data/mockData";
+
+const PROJECT_IMAGES: Record<string, string> = {
+  "capernaum-erp": "capernaum_home.png",
+  "focus-coaching-erp": "focus_home.jpeg",
+  "rejos-logistics-crm": "rejos_home.png",
+  "irasa-ecommerce": "irasa_home.png",
+  "intern-management-system": "ims_home.png",
+  "crm-training-management": "crm_home.png",
+  "powerbi-courses-platform": "powerbi_home.png",
+  "ims-mobile-app": "ims_mobile_app.png",
+  "crm-mobile-app": "crm_mobile_home.png",
+  "medical-coding-assessment": "medical_coding.jpeg",
+  "training-assessment-platform": "training_assessment.jpg",
+  "amazon-reviews-ai": "amazon_customer.jpeg",
+  "startup-funding-predictor": "startup_fund.png",
+};
 
 interface OurWorkPortfolioProps {
   onNavigate: (page: PageRoute) => void;
@@ -23,72 +39,77 @@ interface OurWorkPortfolioProps {
 export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
   onNavigate,
   onOpenContact,
-  selectedGoalFilter = 'All Goals',
-  selectedIndustryFilter = 'All Industries',
+  selectedGoalFilter = "All Goals",
+  selectedIndustryFilter = "All Industries",
 }) => {
   const [goalFilter, setGoalFilter] = useState<string>(selectedGoalFilter);
-  const [industryFilter, setIndustryFilter] = useState<string>(selectedIndustryFilter);
-  const [serviceFilter, setServiceFilter] = useState<string>('All Services');
+  const [industryFilter, setIndustryFilter] = useState<string>(
+    selectedIndustryFilter,
+  );
+  const [serviceFilter, setServiceFilter] = useState<string>("All Services");
   const [showMore, setShowMore] = useState(false);
 
   const testimonialScrollRef = useRef<HTMLDivElement>(null);
-const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
-const handleTestimonialScroll = () => {
-  const el = testimonialScrollRef.current;
-  if (!el) return;
-  const index = Math.round(el.scrollLeft / el.clientWidth);
-  setActiveTestimonial(index);
-};
+  const handleTestimonialScroll = () => {
+    const el = testimonialScrollRef.current;
+    if (!el) return;
+    const index = Math.round(el.scrollLeft / el.clientWidth);
+    setActiveTestimonial(index);
+  };
 
-const scrollToTestimonial = (index: number) => {
-  const el = testimonialScrollRef.current;
-  if (!el) return;
-  el.scrollTo({ left: index * el.clientWidth, behavior: 'smooth' });
-};
+  const scrollToTestimonial = (index: number) => {
+    const el = testimonialScrollRef.current;
+    if (!el) return;
+    el.scrollTo({ left: index * el.clientWidth, behavior: "smooth" });
+  };
 
   // Filter options
-const goalOptions = ['All Goals', 'Automate', 'Scale'];
-const industryOptions = [
-  'All Industries',
-  'Capernaum Solutions',
-  'Focus Coaching Classes',
-  'Rejos Transport',
-  'Irasa Perfumes',
-  'Educational Institutions',
-  'TechnoKraft Solutions',
-  'Training Institute',
-  'Sales & Institute Teams',
-  'Medical Training',
-  'Corporate Training',
-  'E-Commerce Analytics',
-  'Venture Ecosystem',
-];
-const serviceOptions = [
-  'All Services',
-  'Custom ERP Development',
-  'Custom Software Development',
-  'Web Application Development',
-  'Mobile App Development',
-  'AI & Machine Learning',
-];
+  const goalOptions = ["All Goals", "Automate", "Scale"];
+  const industryOptions = [
+    "All Industries",
+    "Capernaum Solutions",
+    "Focus Coaching Classes",
+    "Rejos Transport",
+    "Irasa Perfumes",
+    "Educational Institutions",
+    "TechnoKraft Solutions",
+    "Training Institute",
+    "Sales & Institute Teams",
+    "Medical Training",
+    "Corporate Training",
+    "E-Commerce Analytics",
+    "Venture Ecosystem",
+  ];
+  const serviceOptions = [
+    "All Services",
+    "Custom ERP Development",
+    "Custom Software Development",
+    "Web Application Development",
+    "Mobile App Development",
+    "AI & Machine Learning",
+  ];
 
   // Filtering logic
   const filteredProjects = PORTFOLIO_PROJECTS.filter((proj) => {
-    const matchGoal = goalFilter === 'All Goals' || proj.goal.toLowerCase() === goalFilter.toLowerCase();
+    const matchGoal =
+      goalFilter === "All Goals" ||
+      proj.goal.toLowerCase() === goalFilter.toLowerCase();
     const matchIndustry =
-      industryFilter === 'All Industries' ||
+      industryFilter === "All Industries" ||
       proj.industry.toLowerCase().includes(industryFilter.toLowerCase()) ||
       industryFilter.toLowerCase().includes(proj.industry.toLowerCase());
     const matchService =
-      serviceFilter === 'All Services' || proj.service.toLowerCase() === serviceFilter.toLowerCase();
+      serviceFilter === "All Services" ||
+      proj.service.toLowerCase() === serviceFilter.toLowerCase();
     return matchGoal && matchIndustry && matchService;
   });
 
   const handleCaseStudyClick = (projectId: string) => {
     // Primary manufacturing study opens case-study page; others can also route there
-    onNavigate('case-study');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    onNavigate("case-study");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -99,7 +120,7 @@ const serviceOptions = [
           {/* Breadcrumbs */}
           <div className="flex items-center space-x-2 text-sm text-slate-500 font-medium mb-4">
             <button
-              onClick={() => onNavigate('home')}
+              onClick={() => onNavigate("home")}
               className="hover:text-blue-600 cursor-pointer"
             >
               Home
@@ -112,7 +133,8 @@ const serviceOptions = [
             Our Work
           </h1>
           <p className="mt-3 text-lg text-slate-600 max-w-3xl">
-            Real stories. Real impact. See how we help businesses transform and grow.
+            Real stories. Real impact. See how we help businesses transform and
+            grow.
           </p>
 
           {/* Filter Toolbar matching screenshot */}
@@ -179,9 +201,9 @@ const serviceOptions = [
               <button
                 id="filter-apply-btn"
                 onClick={() => {
-                  setGoalFilter('All Goals');
-                  setIndustryFilter('All Industries');
-                  setServiceFilter('All Services');
+                  setGoalFilter("All Goals");
+                  setIndustryFilter("All Industries");
+                  setServiceFilter("All Services");
                 }}
                 className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-xs flex items-center gap-1.5 transition-colors cursor-pointer"
               >
@@ -197,12 +219,14 @@ const serviceOptions = [
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {filteredProjects.length === 0 ? (
           <div className="text-center py-20 bg-slate-50 rounded-2xl border border-slate-200">
-            <p className="text-lg font-semibold text-slate-700">No case studies match the selected filters.</p>
+            <p className="text-lg font-semibold text-slate-700">
+              No case studies match the selected filters.
+            </p>
             <button
               onClick={() => {
-                setGoalFilter('All Goals');
-                setIndustryFilter('All Industries');
-                setServiceFilter('All Services');
+                setGoalFilter("All Goals");
+                setIndustryFilter("All Industries");
+                setServiceFilter("All Services");
               }}
               className="mt-4 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md"
             >
@@ -222,9 +246,8 @@ const serviceOptions = [
                 <div>
                   <div className="relative h-52 w-full overflow-hidden bg-slate-100">
                     <img
-                      src={project.imageUrl}
+                      src={`${(import.meta as ImportMeta & { env?: { BASE_URL?: string } }).env?.BASE_URL ?? "/"}assets/${PROJECT_IMAGES[project.id]}`}
                       alt={project.title}
-                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
@@ -285,7 +308,11 @@ const serviceOptions = [
             onClick={() => setShowMore(!showMore)}
             className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 hover:underline cursor-pointer"
           >
-            <span>{showMore ? 'Show Fewer Case Studies ↑' : 'View More Case Studies →'}</span>
+            <span>
+              {showMore
+                ? "Show Fewer Case Studies ↑"
+                : "View More Case Studies →"}
+            </span>
           </button>
         </div>
 
@@ -293,14 +320,26 @@ const serviceOptions = [
         {showMore && (
           <div className="mt-8 p-6 bg-slate-50 border border-slate-200 rounded-2xl grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-4 bg-white rounded-xl border border-slate-200">
-              <span className="text-xs font-bold text-blue-600 uppercase">Fintech</span>
-              <h4 className="font-bold text-slate-900 mt-1">Autonomous Fraud Detection for NBFC</h4>
-              <p className="text-xs text-slate-500 mt-1">99.4% precision in detecting transaction anomalies.</p>
+              <span className="text-xs font-bold text-blue-600 uppercase">
+                Fintech
+              </span>
+              <h4 className="font-bold text-slate-900 mt-1">
+                Autonomous Fraud Detection for NBFC
+              </h4>
+              <p className="text-xs text-slate-500 mt-1">
+                99.4% precision in detecting transaction anomalies.
+              </p>
             </div>
             <div className="p-4 bg-white rounded-xl border border-slate-200">
-              <span className="text-xs font-bold text-blue-600 uppercase">Energy</span>
-              <h4 className="font-bold text-slate-900 mt-1">Smart Grid Telemetry for Solar Utilities</h4>
-              <p className="text-xs text-slate-500 mt-1">22% reduction in unmetered power losses across 14 sites.</p>
+              <span className="text-xs font-bold text-blue-600 uppercase">
+                Energy
+              </span>
+              <h4 className="font-bold text-slate-900 mt-1">
+                Smart Grid Telemetry for Solar Utilities
+              </h4>
+              <p className="text-xs text-slate-500 mt-1">
+                22% reduction in unmetered power losses across 14 sites.
+              </p>
             </div>
           </div>
         )}
@@ -344,7 +383,9 @@ const serviceOptions = [
                     className="w-12 h-12 rounded-full object-cover border-2 border-blue-500"
                   />
                   <div>
-                    <h4 className="text-sm font-bold text-white">{item.author}</h4>
+                    <h4 className="text-sm font-bold text-white">
+                      {item.author}
+                    </h4>
                     <p className="text-xs text-slate-400">
                       {item.role}, {item.company}
                     </p>
@@ -362,7 +403,9 @@ const serviceOptions = [
                 onClick={() => scrollToTestimonial(idx)}
                 aria-label={`Go to testimonial ${idx + 1}`}
                 className={`h-2 rounded-full transition-all ${
-                  activeTestimonial === idx ? 'w-6 bg-blue-500' : 'w-2 bg-slate-700'
+                  activeTestimonial === idx
+                    ? "w-6 bg-blue-500"
+                    : "w-2 bg-slate-700"
                 }`}
               />
             ))}
@@ -379,7 +422,8 @@ const serviceOptions = [
                 Ready to Transform Your Business?
               </h2>
               <p className="mt-3 text-base sm:text-lg text-slate-600">
-                Let&apos;s discuss how we can help you achieve your next milestone.
+                Let&apos;s discuss how we can help you achieve your next
+                milestone.
               </p>
 
               <div className="mt-8 flex flex-wrap justify-center sm:justify-start gap-4">
@@ -393,7 +437,7 @@ const serviceOptions = [
                 </button>
                 <button
                   id="cta-explore-work-btn"
-                  onClick={() => onNavigate('our-work')}
+                  onClick={() => onNavigate("our-work")}
                   className="px-6 py-3.5 border border-slate-300 hover:border-slate-400 bg-slate-50 hover:bg-slate-100 text-slate-800 font-semibold text-sm rounded-lg transition-all cursor-pointer"
                 >
                   Explore Our Work
@@ -407,7 +451,9 @@ const serviceOptions = [
                 <div className="flex items-center justify-between pb-3 border-b border-slate-700 mb-4">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
-                    <span className="text-xs font-bold">TechnoKraft Platform</span>
+                    <span className="text-xs font-bold">
+                      TechnoKraft Platform
+                    </span>
                   </div>
                   <span className="text-[10px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800 font-medium">
                     Verified ROI
@@ -415,16 +461,28 @@ const serviceOptions = [
                 </div>
                 <div className="space-y-2.5">
                   <div className="p-2.5 bg-slate-800/80 rounded-lg border border-slate-700 flex items-center justify-between">
-                    <span className="text-xs text-slate-300">Target Efficiency</span>
-                    <span className="text-xs font-bold text-blue-400">+45%</span>
+                    <span className="text-xs text-slate-300">
+                      Target Efficiency
+                    </span>
+                    <span className="text-xs font-bold text-blue-400">
+                      +45%
+                    </span>
                   </div>
                   <div className="p-2.5 bg-slate-800/80 rounded-lg border border-slate-700 flex items-center justify-between">
-                    <span className="text-xs text-slate-300">Deployment Velocity</span>
-                    <span className="text-xs font-bold text-emerald-400">3x Faster</span>
+                    <span className="text-xs text-slate-300">
+                      Deployment Velocity
+                    </span>
+                    <span className="text-xs font-bold text-emerald-400">
+                      3x Faster
+                    </span>
                   </div>
                   <div className="p-2.5 bg-slate-800/80 rounded-lg border border-slate-700 flex items-center justify-between">
-                    <span className="text-xs text-slate-300">Cloud Cost Savings</span>
-                    <span className="text-xs font-bold text-cyan-400">-32%</span>
+                    <span className="text-xs text-slate-300">
+                      Cloud Cost Savings
+                    </span>
+                    <span className="text-xs font-bold text-cyan-400">
+                      -32%
+                    </span>
                   </div>
                 </div>
               </div>

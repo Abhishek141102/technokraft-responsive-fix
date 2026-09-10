@@ -14,7 +14,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="home-hero-section"
-      className="relative min-h-[480px] lg:min-h-[650px] bg-[#0B0F19] text-white overflow-hidden flex items-center"
+      className="relative min-h-[590px] lg:min-h-[650px] bg-[#0B0F19] text-white overflow-hidden flex items-center"
     >
       <img
         src={`${(import.meta as ImportMeta & { env?: { BASE_URL?: string } }).env?.BASE_URL ?? "/"}assets/tts_hero_img.png`}
