@@ -108,7 +108,7 @@ export const ContactSection: React.FC = () => {
             <div className="mt-5 w-full overflow-hidden rounded-xl border border-slate-200 shadow-sm">
               <iframe
                 title="TechnoKraft Services LLP Location"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d374.5721994456583!2d73.76372274615402!3d20.006360139964965!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeb9bbe9b8d51%3A0x198c21864b858779!2sTechnoKraft%20Training%20%26%20Solution%20PVT%20LTD!5e1!3m2!1sen!2sus!4v1789020336666!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3749.054314379084!2d73.7636211!3d20.006235000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddebfc6cb832b7%3A0x86b5c410caf6bb9a!2s!5e0!3m2!1sen!2sin!4v1789032168203!5m2!1sen!2sin"
                 className="w-full h-48 sm:h-56 border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
