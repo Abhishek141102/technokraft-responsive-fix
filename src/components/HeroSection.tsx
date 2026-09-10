@@ -17,7 +17,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       className="relative min-h-[480px] lg:min-h-[650px] bg-[#0B0F19] text-white overflow-hidden flex items-center"
     >
       <img
-        src="/assets/tts_hero_img.png"
+        src={`${(import.meta as ImportMeta & { env?: { BASE_URL?: string } }).env?.BASE_URL ?? "/"}assets/tts_hero_img.png`}
         alt="Digital transformation vision"
         className="absolute inset-0 w-full h-full object-cover object-[80%_center] lg:object-center"
       />
