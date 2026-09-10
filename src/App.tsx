@@ -14,6 +14,7 @@ import { ConsultationModal } from "./components/ConsultationModal";
 import { AboutSection } from "./components/AboutSection";
 import { ContactSection } from './components/ContactSection';
 import { GetInTouchSection } from "./components/GetInTouchSection";
+import { ServiceDetail } from "./components/ServiceDetail";
 
 export default function App() {
   // GitHub Pages-compatible routing using the URL hash.
@@ -22,6 +23,7 @@ export default function App() {
   const getInitialRoute = (): PageRoute => {
     const hash = window.location.hash.toLowerCase();
 
+    if (hash.includes("/services/")) return "service-detail";
     if (hash.includes("case-study")) return "case-study";
     if (hash.includes("our-work")) return "our-work";
     if (hash.includes("about")) return "about";
@@ -30,7 +32,14 @@ export default function App() {
     return "home";
   };
 
+  const getInitialServiceSlug = (): string | null => {
+    const hash = window.location.hash.toLowerCase();
+    const match = hash.match(/#\/services\/([^?]+)/);
+    return match ? decodeURIComponent(match[1]) : null;
+  };
+
   const [currentPage, setCurrentPage] = useState<PageRoute>(getInitialRoute());
+  const [selectedServiceSlug, setSelectedServiceSlug] = useState<string | null>(getInitialServiceSlug());
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [selectedGoalFilter, setSelectedGoalFilter] =
     useState<string>("All Goals");
@@ -41,6 +50,7 @@ export default function App() {
   useEffect(() => {
     const handlePopState = () => {
       setCurrentPage(getInitialRoute());
+      setSelectedServiceSlug(getInitialServiceSlug());
     };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
@@ -60,6 +70,16 @@ export default function App() {
     }
   };
 
+  const handleServiceNavigate = (slug: string) => {
+    setSelectedServiceSlug(slug);
+    setCurrentPage("service-detail");
+    const hash = `#/services/${slug}`;
+    if (window.location.hash !== hash) {
+      window.history.pushState({}, "", hash);
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleSelectGoal = (goalTitle: string) => {
     setSelectedGoalFilter(goalTitle);
   };
@@ -75,6 +95,7 @@ export default function App() {
         currentPage={currentPage}
         onNavigate={handleNavigate}
         onOpenContact={() => setIsConsultationOpen(true)}
+        onServiceNavigate={handleServiceNavigate}
       />
 
       {/* Page Content */}
@@ -98,6 +119,13 @@ export default function App() {
             />
             <GetInTouchSection />
           </>
+        )}
+
+        {currentPage === "service-detail" && selectedServiceSlug && (
+          <ServiceDetail
+            slug={selectedServiceSlug}
+            onOpenContact={() => setIsConsultationOpen(true)}
+          />
         )}
 
         {currentPage === "case-study" && (

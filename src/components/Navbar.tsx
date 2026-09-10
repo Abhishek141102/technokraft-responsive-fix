@@ -6,12 +6,14 @@ interface NavbarProps {
   currentPage: PageRoute;
   onNavigate: (page: PageRoute) => void;
   onOpenContact: () => void;
+  onServiceNavigate: (slug: string) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   currentPage,
   onNavigate,
   onOpenContact,
+  onServiceNavigate,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDesktopDropdown, setOpenDesktopDropdown] = useState<string | null>(
@@ -33,6 +35,18 @@ export const Navbar: React.FC<NavbarProps> = ({
     "AI & Machine Learning",
     "Nashik Software Services",
   ];
+
+  const SERVICE_SLUGS: Record<string, string> = {
+    "Custom Software Development": "custom-software-development",
+    "Custom ERP Development": "custom-erp-development",
+    "Inventory Management Software": "inventory-management-software",
+    "Web Application Development": "web-development",
+    "Mobile App Development": "mobile-app-development",
+    "Cloud & DevOps Engineering": "cloud-devops",
+    "Cybersecurity & VAPT Audits": "cybersecurity-vapt",
+    "AI & Machine Learning": "ai-machine-learning",
+    "Nashik Software Services": "nashik-software-services",
+  };
 
   const INDUSTRIES_ITEMS = [
     "Manufacturing",
@@ -152,7 +166,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                             key={sub}
                             onClick={() => {
                               setOpenDesktopDropdown(null);
-                              handleLinkClick(item);
+                              onServiceNavigate(SERVICE_SLUGS[sub]);
+                              setMobileMenuOpen(false);
                             }}
                             className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer ${
                               isDark
@@ -260,7 +275,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                         {item.dropdown.map((sub) => (
                           <button
                             key={sub}
-                            onClick={() => handleLinkClick(item)}
+                            onClick={() => {
+                              onServiceNavigate(SERVICE_SLUGS[sub]);
+                              setMobileMenuOpen(false);
+                              setOpenMobileDropdown(null);
+                            }}
                             className={`text-left px-3 py-2 rounded-md text-sm transition-colors ${
                               isDark
                                 ? "text-slate-400 hover:bg-slate-800 hover:text-white"
