@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, X, ChevronRight, ArrowUpRight, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronRight, ArrowUpRight, ChevronDown } from "lucide-react";
 import { PageRoute } from "../types";
 
 interface NavbarProps {
@@ -23,16 +23,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   const isDark = currentPage === "home";
 
   const SERVICES_ITEMS = [
-  "Custom Software Development",
-  "Custom ERP Development",
-  "Inventory Management Software",
-  "Web Application Development",
-  "Mobile App Development",
-  "Cloud & DevOps Engineering",
-  "Cybersecurity & VAPT Audits",
-  "AI & Machine Learning",
-  "Nashik Software Services",
-];
+    "Custom Software Development",
+    "Custom ERP Development",
+    "Inventory Management Software",
+    "Web Application Development",
+    "Mobile App Development",
+    "Cloud & DevOps Engineering",
+    "Cybersecurity & VAPT Audits",
+    "AI & Machine Learning",
+    "Nashik Software Services",
+  ];
 
   const INDUSTRIES_ITEMS = [
     "Manufacturing",
@@ -96,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="flex items-center cursor-pointer group select-none"
         >
           <img
-            src={isDark ? "/assets/tts_logo.png" : "/assets/tts_llp_logo.png"}
+            src={`${(import.meta as ImportMeta & { env: { BASE_URL: string } }).env.BASE_URL}assets/${isDark ? "tts_logo.png" : "tts_llp_logo.png"}`}
             alt="TechnoKraft Services LLP"
             className="w-[154px] h-[37px] object-contain"
           />
@@ -124,7 +124,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 >
                   <button
                     id={`nav-link-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
-                    
                     className={`flex items-center gap-1 text-sm font-medium transition-colors cursor-pointer py-1.5 ${
                       isDark
                         ? isActive
