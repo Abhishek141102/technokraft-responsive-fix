@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, type Variants } from "motion/react";
 import { JourneyMilestones } from './JourneyMilestones';
+import { TeamStructure } from './TeamStructure';
 import {
   Eye,
   Target,
@@ -281,6 +282,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
     ))}
   </div>
 </motion.div>
+
+<TeamStructure />
+
       </div>
     </section>
   );

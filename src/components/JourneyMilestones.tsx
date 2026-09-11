@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, type Variants } from 'motion/react';
+import { motion } from 'motion/react';
 
 const MILESTONES = [
   {
@@ -40,19 +40,6 @@ const MILESTONES = [
   },
 ];
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.45,
-      delay: index * 0.1,
-      ease: 'easeOut',
-    },
-  }),
-};
-
 export const JourneyMilestones: React.FC = () => {
   // Duplicate items create a seamless infinite marquee loop.
   const marqueeItems = [...MILESTONES, ...MILESTONES];
@@ -80,16 +67,16 @@ export const JourneyMilestones: React.FC = () => {
           <div className="absolute left-0 right-0 top-14 h-px bg-slate-300/70" />
 
           <motion.div
-            className="journey-marquee relative flex w-max gap-6 sm:gap-8 hover:[animation-play-state:paused]"
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="relative w-full overflow-hidden"
           >
+            <div className="journey-marquee flex w-max gap-6 sm:gap-8">
             {marqueeItems.map((item, index) => (
               <motion.div
                 key={`${item.year}-${index}`}
-                custom={index % MILESTONES.length}
-                variants={cardVariants}
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.22, ease: 'easeOut' }}
                 className="group shrink-0 w-[220px] sm:w-[240px] flex flex-col items-center text-center"
@@ -127,6 +114,7 @@ export const JourneyMilestones: React.FC = () => {
                 </p>
               </motion.div>
             ))}
+            </div>
           </motion.div>
         </div>
       </div>
@@ -142,7 +130,12 @@ export const JourneyMilestones: React.FC = () => {
         }
 
         .journey-marquee {
-          animation: journeyMarquee 38s linear infinite;
+          animation: journeyMarquee 32s linear infinite;
+          will-change: transform;
+        }
+
+        .journey-marquee:hover {
+          animation-play-state: paused;
         }
 
         @media (prefers-reduced-motion: reduce) {
