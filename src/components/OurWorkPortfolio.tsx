@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { motion, type Variants } from "motion/react";
 import {
   ChevronRight,
   Filter,
@@ -35,6 +36,32 @@ interface OurWorkPortfolioProps {
   selectedGoalFilter?: string;
   selectedIndustryFilter?: string;
 }
+
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: "easeOut" },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 14,
+    scale: 0.99,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.28,
+      ease: "easeOut",
+    },
+  },
+};
 
 export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
   onNavigate,
@@ -115,7 +142,12 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
   return (
     <div id="our-work-page" className="bg-white min-h-screen">
       {/* Header & Breadcrumb */}
-      <div className="border-b border-slate-200 bg-slate-50/50">
+      <motion.div
+        className="border-b border-slate-200 bg-slate-50/50"
+        variants={sectionVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {/* Breadcrumbs */}
           <div className="flex items-center space-x-2 text-sm text-slate-500 font-medium mb-4">
@@ -213,10 +245,16 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Project Grid (3x2 Layout) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.08 }}
+      >
         {filteredProjects.length === 0 ? (
           <div className="text-center py-20 bg-slate-50 rounded-2xl border border-slate-200">
             <p className="text-lg font-semibold text-slate-700">
@@ -236,19 +274,28 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, idx) => (
-              <div
+              <motion.div
                 key={project.id}
                 id={`project-card-${project.id}`}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.12 }}
+                whileHover={{ y: -4, scale: 1.012 }}
+                whileTap={{ scale: 0.995 }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
                 onClick={() => handleCaseStudyClick(project.id)}
-                className="group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-xl hover:border-blue-400/80 transition-all duration-300 flex flex-col justify-between cursor-pointer transform hover:-translate-y-1"
+                className="group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-xl hover:border-blue-400/80 flex flex-col justify-between cursor-pointer"
               >
                 {/* Top Image Banner with Category Pill */}
                 <div>
                   <div className="relative h-52 w-full overflow-hidden bg-slate-100">
-                    <img
+                    <motion.img
                       src={`${(import.meta as ImportMeta & { env?: { BASE_URL?: string } }).env?.BASE_URL ?? "/"}assets/${PROJECT_IMAGES[project.id]}`}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      whileHover={{ scale: 1.06 }}
+                      transition={{ duration: 0.22, ease: "easeOut" }}
+                      className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
                     <div className="absolute top-4 left-4">
@@ -296,7 +343,7 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
                     <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}
@@ -343,10 +390,17 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
             </div>
           </div>
         )}
-      </div>
+      </motion.div>
 
       {/* Testimonials Section (Dark Navy Background) */}
-      <section className="bg-[#0B0F19] text-white py-20 border-y border-slate-800">
+      <motion.section
+        id="testimonials-section"
+        className="bg-[#0B0F19] text-white py-20 border-y border-slate-800"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.08 }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -364,8 +418,13 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
             className="flex md:grid md:grid-cols-2 gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth no-scrollbar -mx-4 px-4 md:mx-0 md:px-0"
           >
             {TESTIMONIALS.map((item) => (
-              <div
+              <motion.div
                 key={item.id}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.12 }}
+                whileHover={{ y: -5 }}
                 className="w-full md:w-auto shrink-0 snap-center bg-slate-900/90 rounded-2xl p-8 border border-slate-800 shadow-xl flex flex-col justify-between hover:border-slate-700 transition-colors"
               >
                 <div>
@@ -391,7 +450,7 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -411,10 +470,16 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Bottom CTA Banner (White rounded container) */}
-      <section className="py-20 bg-slate-100/70">
+      <motion.section
+        className="py-20 bg-slate-100/70"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.08 }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center overflow-hidden">
             <div className="lg:col-span-7">
@@ -447,7 +512,11 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
 
             {/* Enterprise Dashboard & Team Graphic */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-sm rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-5 text-white border border-slate-700 shadow-2xl">
+              <motion.div
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="relative w-full max-w-sm rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-5 text-white border border-slate-700 shadow-2xl"
+              >
                 <div className="flex items-center justify-between pb-3 border-b border-slate-700 mb-4">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
@@ -485,11 +554,11 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };

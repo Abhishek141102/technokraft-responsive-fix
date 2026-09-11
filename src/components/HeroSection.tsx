@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowRight, Calendar } from "lucide-react";
 import { PageRoute } from "../types";
+import { motion } from "motion/react";
 
 interface HeroSectionProps {
   onNavigate: (page: PageRoute) => void;
@@ -16,9 +17,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       id="home-hero-section"
       className="relative min-h-[590px] lg:min-h-[650px] bg-[#0B0F19] text-white overflow-hidden flex items-center"
     >
-      <img
+      <motion.img
         src={`${(import.meta as ImportMeta & { env?: { BASE_URL?: string } }).env?.BASE_URL ?? "/"}assets/tts_hero_img.png`}
         alt="Digital transformation vision"
+        initial={{ opacity: 0, scale: 1.06 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
         className="absolute inset-0 w-full h-full object-cover object-[80%_center] lg:object-center"
       />
 
@@ -26,42 +30,101 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       {/* Main Hero Content */}
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12 z-10">
-        <div className="max-w-[600px] text-center lg:text-left mx-auto lg:mx-0">
+        <motion.div
+          className="max-w-[600px] text-center lg:text-left mx-auto lg:mx-0"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                delayChildren: 0.2,
+                staggerChildren: 0.14,
+              },
+            },
+          }}
+        >
           {/* Headline */}
-          <h1 className="text-[1.8rem] sm:text-5xl lg:text-[3.05rem] font-extrabold tracking-tight text-white leading-[1.25]">
+          <motion.h1
+            variants={{
+              hidden: { opacity: 0, y: 28 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.7, ease: "easeOut" },
+              },
+            }}
+            className="text-[1.8rem] sm:text-5xl lg:text-[3.05rem] font-extrabold tracking-tight text-white leading-[1.25]"
+          >
             We Build. We Transform.
-            <span className="block mt-1 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 drop-shadow-[0_0_20px_rgba(59,130,246,0.6)]">
+            <motion.span
+              variants={{
+                hidden: { opacity: 0, y: 14 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.65, ease: "easeOut" },
+                },
+              }}
+              className="block mt-1 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 drop-shadow-[0_0_20px_rgba(59,130,246,0.6)]"
+            >
               We Scale Your Business.
-            </span>
-          </h1>
+            </motion.span>
+          </motion.h1>
 
           {/* Subtitle */}
-          <p className="mt-6 text-base sm:text-lg text-slate-300 leading-relaxed font-normal max-w-[560px]">
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.65, ease: "easeOut" },
+              },
+            }}
+            className="mt-6 text-base sm:text-lg text-slate-300 leading-relaxed font-normal max-w-[560px]"
+          >
             We help businesses modernize operations, automate processes, harness
             data and scale with confidence.
-          </p>
+          </motion.p>
 
           {/* CTAs */}
-          <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-            <button
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.65, ease: "easeOut" },
+              },
+            }}
+            className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
+          >
+            <motion.button
               id="hero-explore-work-btn"
               onClick={() => onNavigate("our-work")}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
               className="px-7 py-3.5 rounded-md bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base transition-all shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 flex items-center justify-center gap-2 cursor-pointer active:scale-95"
             >
               <span>Explore Our Work</span>
               <ArrowRight className="w-5 h-5" />
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
               id="hero-schedule-consultation-btn"
               onClick={onOpenContact}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
               className="px-7 py-3.5 rounded-md border border-slate-700 hover:border-slate-500 bg-slate-900/60 hover:bg-slate-800 text-slate-200 font-semibold text-base transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95 backdrop-blur-xs"
             >
               <Calendar className="w-5 h-5 text-blue-400" />
               <span>Schedule Consultation</span>
-            </button>
-          </div>
-        </div>
+            </motion.button>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

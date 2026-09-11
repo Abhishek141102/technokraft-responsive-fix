@@ -21,35 +21,73 @@ const CLIENTS = [
 ];
 
 export const SocialProofLogos: React.FC = () => {
+  // Duplicate the logos so the marquee can loop seamlessly.
+  const marqueeClients = [...CLIENTS, ...CLIENTS];
+
   return (
     <section
       id="social-proof-section"
-      className="bg-white border-b border-slate-200 py-10 overflow-hidden"
+      className="bg-white border-b border-slate-200 py-8 sm:py-10 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-widest mb-8">
+      <div className="max-w-7xl mx-auto">
+        <p className="text-center px-4 text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-widest mb-7 sm:mb-8">
           Trusted by forward-thinking businesses
         </p>
 
-        {/* Client Logos Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-10 items-center justify-items-center opacity-90 hover:opacity-100 transition-opacity">
-          {CLIENTS.map((client) => (
-            <div
-              key={client.name}
-              className="flex flex-col items-center gap-2 group cursor-pointer transition-transform hover:scale-105"
-            >
-              <img
-                src={client.logo}
-                alt={client.name}
-                className="h-12 sm:h-14 w-auto max-w-[160px] object-contain"
-              />
-              <span className="text-[11px] sm:text-xs font-semibold tracking-wide text-slate-600 text-center whitespace-nowrap">
-                {client.name}
-              </span>
-            </div>
-          ))}
+        <div className="relative w-full overflow-hidden">
+          {/* Soft edge fades for a polished marquee effect */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-20 z-10 bg-gradient-to-r from-white to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-20 z-10 bg-gradient-to-l from-white to-transparent" />
+
+          <div
+            className="
+              flex w-max items-center
+              animate-[trustedPartnersMarquee_24s_linear_infinite]
+              hover:[animation-play-state:paused]
+              motion-reduce:animate-none
+            "
+          >
+            {marqueeClients.map((client, index) => (
+              <div
+                key={`${client.name}-${index}`}
+                className="
+                  flex w-[190px] sm:w-[240px] md:w-[280px]
+                  shrink-0 flex-col items-center justify-center gap-2
+                  px-5 sm:px-8
+                  opacity-90 hover:opacity-100
+                  transition-all duration-300
+                  hover:scale-105
+                "
+              >
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="
+                    h-11 sm:h-14
+                    w-auto max-w-[145px] sm:max-w-[180px]
+                    object-contain
+                  "
+                />
+
+                <span className="text-[10px] sm:text-xs font-semibold tracking-wide text-slate-600 text-center whitespace-nowrap">
+                  {client.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes trustedPartnersMarquee {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
     </section>
   );
 };

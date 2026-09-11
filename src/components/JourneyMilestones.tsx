@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React from 'react';
+import { motion, type Variants } from 'motion/react';
 
 const MILESTONES = [
   {
@@ -40,74 +40,84 @@ const MILESTONES = [
   },
 ];
 
-export const JourneyMilestones: React.FC = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      delay: index * 0.1,
+      ease: 'easeOut',
+    },
+  }),
+};
 
-  const scrollBy = (dir: 'left' | 'right') => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir === 'left' ? -280 : 280, behavior: 'smooth' });
-  };
+export const JourneyMilestones: React.FC = () => {
+  // Duplicate items create a seamless infinite marquee loop.
+  const marqueeItems = [...MILESTONES, ...MILESTONES];
 
   return (
-    <section className="py-20 mt-15 bg-[#F1F4F8] border-b border-slate-200">
+    <section className="py-20 mt-15 overflow-hidden bg-[#F1F4F8] border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="max-w-2xl mx-auto text-center"
+        >
           <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold uppercase tracking-wider mb-4">
             Our Journey
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
             Milestones That Define Us
           </h2>
-        </div>
+        </motion.div>
 
         <div className="relative mt-14">
-          {/* Left arrow */}
-          <button
-            onClick={() => scrollBy('left')}
-            aria-label="Previous milestone"
-            className="hidden sm:flex absolute -left-4 top-24 z-10 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md items-center justify-center text-slate-500 hover:text-blue-600 hover:border-blue-300 transition-colors cursor-pointer"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
+          {/* Timeline line */}
+          <div className="absolute left-0 right-0 top-14 h-px bg-slate-300/70" />
 
-          {/* Right arrow */}
-          <button
-            onClick={() => scrollBy('right')}
-            aria-label="Next milestone"
-            className="hidden sm:flex absolute -right-4 top-24 z-10 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md items-center justify-center text-slate-500 hover:text-blue-600 hover:border-blue-300 transition-colors cursor-pointer"
+          <motion.div
+            className="journey-marquee relative flex w-max gap-6 sm:gap-8 hover:[animation-play-state:paused]"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-
-          <div
-            ref={scrollRef}
-            className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 sm:gap-8 pb-2"
-          >
-            {MILESTONES.map((item) => (
-              <div
-                key={item.year}
-                className="snap-center shrink-0 w-[220px] sm:w-[240px] flex flex-col items-center text-center"
+            {marqueeItems.map((item, index) => (
+              <motion.div
+                key={`${item.year}-${index}`}
+                custom={index % MILESTONES.length}
+                variants={cardVariants}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.22, ease: 'easeOut' }}
+                className="group shrink-0 w-[220px] sm:w-[240px] flex flex-col items-center text-center"
               >
                 {/* Circular photo */}
-                <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-md">
+                <motion.div
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.22, ease: 'easeOut' }}
+                  className="relative z-10 w-28 h-28 rounded-full overflow-hidden border-4 border-white bg-white shadow-md"
+                >
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                </div>
+                </motion.div>
 
                 {/* Chevron year badge */}
-                <div
-                  className={`mt-6 w-full h-14 flex items-center justify-center text-white text-xl font-extrabold ${item.color}`}
+                <motion.div
+                  whileHover={{ scale: 1.04 }}
+                  className={`mt-6 w-full h-14 flex items-center justify-center text-white text-xl font-extrabold ${item.color} shadow-sm`}
                   style={{
                     clipPath:
                       'polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%, 12% 50%)',
                   }}
                 >
                   {item.year}
-                </div>
+                </motion.div>
 
                 <h3 className="mt-5 text-base font-bold text-slate-900">
                   {item.title}
@@ -115,11 +125,32 @@ export const JourneyMilestones: React.FC = () => {
                 <p className="mt-2 text-sm text-slate-500 leading-relaxed">
                   {item.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes journeyMarquee {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(calc(-50% - 1rem));
+          }
+        }
+
+        .journey-marquee {
+          animation: journeyMarquee 38s linear infinite;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .journey-marquee {
+            animation-play-state: paused;
+          }
+        }
+      `}</style>
     </section>
   );
 };

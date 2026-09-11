@@ -123,6 +123,7 @@ export default function App() {
 
         {currentPage === "service-detail" && selectedServiceSlug && (
           <ServiceDetail
+            key={selectedServiceSlug}
             slug={selectedServiceSlug}
             onOpenContact={() => setIsConsultationOpen(true)}
           />

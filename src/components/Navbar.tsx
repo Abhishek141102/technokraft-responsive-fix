@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X, ChevronRight, ArrowUpRight, ChevronDown } from "lucide-react";
 import { PageRoute } from "../types";
+import { AnimatePresence, motion } from "motion/react";
 
 interface NavbarProps {
   currentPage: PageRoute;
@@ -102,11 +103,18 @@ export const Navbar: React.FC<NavbarProps> = ({
           : "bg-white text-slate-800 border-b border-slate-200 shadow-xs"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between"
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
         {/* Left: TechnoKraft Brand Logo */}
-        <div
+        <motion.div
           id="nav-brand-logo"
           onClick={() => onNavigate("home")}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           className="flex items-center cursor-pointer group select-none"
         >
           <img
@@ -114,12 +122,23 @@ export const Navbar: React.FC<NavbarProps> = ({
             alt="TechnoKraft Services LLP"
             className="w-[154px] h-[37px] object-contain"
           />
-        </div>
+        </motion.div>
 
         {/* Center: Desktop Navigation Links */}
-        <nav
+        <motion.nav
           id="desktop-nav-links"
           className="hidden lg:flex items-center space-x-7"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                delayChildren: 0.15,
+                staggerChildren: 0.06,
+              },
+            },
+          }}
         >
           {navLinks.map((item) => {
             const isActive =
@@ -130,8 +149,16 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             if ("dropdown" in item && item.dropdown) {
               return (
-                <div
+                <motion.div
                   key={item.label}
+                  variants={{
+                    hidden: { opacity: 0, y: -8 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.35, ease: "easeOut" },
+                    },
+                  }}
                   className="relative"
                   onMouseEnter={() => setOpenDesktopDropdown(item.label)}
                   onMouseLeave={() => setOpenDesktopDropdown(null)}
@@ -181,15 +208,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
                     </div>
                   )}
-                </div>
+                </motion.div>
               );
             }
 
             return (
-              <button
+              <motion.button
                 key={item.label}
                 id={`nav-link-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                 onClick={() => handleLinkClick(item)}
+                variants={{
+                  hidden: { opacity: 0, y: -8 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.35, ease: "easeOut" },
+                  },
+                }}
                 className={`text-sm font-medium transition-colors cursor-pointer py-1.5 ${
                   isDark
                     ? isActive
@@ -201,27 +236,33 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }`}
               >
                 {item.label}
-              </button>
+              </motion.button>
             );
           })}
-        </nav>
+        </motion.nav>
 
         {/* Right: CTA Button "Let's Talk" */}
         <div className="hidden lg:flex items-center gap-3">
-          <button
+          <motion.button
             id="nav-cta-talk-btn"
             onClick={onOpenContact}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="px-5 py-2.5 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm transition-all shadow-sm hover:shadow-md hover:shadow-blue-500/20 active:scale-95 cursor-pointer flex items-center gap-1.5"
           >
             <span>Let&apos;s Talk</span>
             <ChevronRight className="w-4 h-4" />
-          </button>
+          </motion.button>
         </div>
 
         {/* Mobile menu button */}
         <div className="flex lg:hidden items-center">
-          <button
+          <motion.button
             id="mobile-menu-toggle-btn"
+            whileTap={{ scale: 0.9 }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`p-2 rounded-md ${
               isDark
@@ -235,26 +276,54 @@ export const Navbar: React.FC<NavbarProps> = ({
             ) : (
               <Menu className="w-6 h-6" />
             )}
-          </button>
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Mobile Menu Dropdown */}
-      {mobileMenuOpen && (
-        <div
+      <AnimatePresence>
+        {mobileMenuOpen && (
+        <motion.div
           id="mobile-nav-menu"
-          className={`lg:hidden px-4 pt-2 pb-6 border-b ${
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className={`lg:hidden px-4 pt-2 pb-6 border-b overflow-hidden ${
             isDark
               ? "bg-[#0B0F19] border-slate-800 text-white"
               : "bg-white border-slate-200 text-slate-900"
           }`}
         >
-          <div className="flex flex-col space-y-3 pt-2">
+          <motion.div
+            className="flex flex-col space-y-3 pt-2"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  delayChildren: 0.08,
+                  staggerChildren: 0.05,
+                },
+              },
+            }}
+          >
             {navLinks.map((item) => {
               if ("dropdown" in item && item.dropdown) {
                 const isOpen = openMobileDropdown === item.label;
                 return (
-                  <div key={item.label}>
+                  <motion.div
+                    key={item.label}
+                    variants={{
+                      hidden: { opacity: 0, x: -12 },
+                      visible: {
+                        opacity: 1,
+                        x: 0,
+                        transition: { duration: 0.3, ease: "easeOut" },
+                      },
+                    }}
+                  >
                     <button
                       onClick={() =>
                         setOpenMobileDropdown(isOpen ? null : item.label)
@@ -291,13 +360,21 @@ export const Navbar: React.FC<NavbarProps> = ({
                         ))}
                       </div>
                     )}
-                  </div>
+                  </motion.div>
                 );
               }
 
               return (
-                <button
+                <motion.button
                   key={item.label}
+                  variants={{
+                    hidden: { opacity: 0, x: -12 },
+                    visible: {
+                      opacity: 1,
+                      x: 0,
+                      transition: { duration: 0.3, ease: "easeOut" },
+                    },
+                  }}
                   onClick={() => handleLinkClick(item)}
                   className={`text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     isDark
@@ -306,23 +383,26 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }`}
                 >
                   {item.label}
-                </button>
+                </motion.button>
               );
             })}
             <div className="pt-2">
-              <button
+              <motion.button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenContact();
                 }}
+                whileTap={{ scale: 0.97 }}
+                whileHover={{ y: -2 }}
                 className="w-full py-3 rounded-md bg-blue-600 text-white font-medium text-center text-sm shadow-sm"
               >
                 Let&apos;s Talk
-              </button>
+              </motion.button>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

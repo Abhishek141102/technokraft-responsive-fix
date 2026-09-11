@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, type Variants } from "motion/react";
 import {
   ArrowLeft,
   ChevronRight,
@@ -22,6 +23,17 @@ import {
 } from "lucide-react";
 import { PageRoute } from "../types";
 import { ROADMAP_PHASES, TESTIMONIALS } from "../data/mockData";
+
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.28, ease: "easeOut" } },
+};
+
 
 interface CaseStudyDetailProps {
   onNavigate: (page: PageRoute) => void;
@@ -53,7 +65,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
   };
 
   return (
-    <div id="case-study-page" className="bg-white min-h-screen">
+    <motion.div id="case-study-page" initial="hidden" animate="visible" className="bg-white min-h-screen">
       {/* Breadcrumbs & Hero Header */}
       <div className="border-b border-slate-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -89,7 +101,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
           </div>
 
           {/* Hero Content with Split Image Right */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-8">
+          <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-8">
             <div className="lg:col-span-7">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
                 Transforming Operations for a Leading Manufacturing Company
@@ -153,7 +165,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -206,7 +218,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
           {/* Right Content Column */}
           <main className="lg:col-span-9 space-y-16">
             {/* 1. Key Impact Metric Cards (4 Grid) */}
-            <section id="overview" className="scroll-mt-32">
+            <motion.section id="overview" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.08 }} className="scroll-mt-32">
               <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2 min-w-0">
                 <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
                 Key Impact Highlights
@@ -248,7 +260,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                   </p>
                 </div>
               </div>
-            </section>
+            </motion.section>
 
             {/* 2. The Challenge */}
             <section
@@ -755,6 +767,6 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
           </main>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

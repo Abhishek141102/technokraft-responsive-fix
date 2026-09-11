@@ -1,4 +1,5 @@
 import React, { FormEvent, useState } from "react";
+import { motion, type Variants } from "motion/react";
 import {
   MapPin,
   Phone,
@@ -7,6 +8,11 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
+
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
+};
 
 export const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -19,7 +25,7 @@ export const ContactSection: React.FC = () => {
   return (
     <section className="min-h-screen bg-white">
       {/* Hero */}
-      <div className="bg-[#0B0F19] text-white">
+      <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} className="bg-[#0B0F19] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <p className="text-sm font-semibold text-blue-400 uppercase tracking-widest">
             Contact Us
@@ -34,12 +40,12 @@ export const ContactSection: React.FC = () => {
             assist you.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Office information */}
-          <div className="lg:col-span-5">
+          <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} className="lg:col-span-5">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
               Get In Touch With Our Team
             </h2>
@@ -115,10 +121,10 @@ export const ContactSection: React.FC = () => {
                 allowFullScreen
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact form */}
-          <div className="lg:col-span-7">
+          <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} className="lg:col-span-7">
             <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-7 lg:p-8">
               {submitted ? (
                 <div className="min-h-[420px] flex flex-col items-center justify-center text-center">
@@ -223,7 +229,7 @@ export const ContactSection: React.FC = () => {
                 </>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

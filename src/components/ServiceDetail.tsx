@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "motion/react";
 import { ArrowRight, CheckCircle2, ChevronDown, MapPin, Phone, Mail, Clock3 } from "lucide-react";
 import { serviceBySlug } from "../data/servicesData";
 
@@ -24,9 +25,19 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onOpenContac
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-[#0B0F19] text-white py-16 sm:py-20 lg:py-24">
+      <motion.section
+        className="bg-[#0B0F19] text-white py-16 sm:py-20 lg:py-24"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl">
+          <motion.div
+            className="max-w-4xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
             {service.eyebrow && (
               <p className="text-xs sm:text-sm font-bold tracking-[0.2em] text-blue-400 uppercase mb-4">
                 {service.eyebrow}
@@ -39,19 +50,25 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onOpenContac
             <p className="mt-6 text-base sm:text-lg text-slate-300 leading-8 max-w-4xl">
               {service.lead}
             </p>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       <main>
         <section className="py-12 sm:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Intro callout */}
             {service.introTitle && service.intro && (
-              <div className="rounded-2xl bg-slate-50 border-l-4 border-blue-600 p-6 sm:p-8 mb-14">
+              <motion.div
+                className="rounded-2xl bg-slate-50 border-l-4 border-blue-600 p-6 sm:p-8 mb-14"
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.55 }}
+              >
                 <h2 className="text-xl sm:text-2xl font-bold text-slate-900">{service.introTitle}</h2>
                 <p className="mt-3 text-slate-600 leading-7">{service.intro}</p>
-              </div>
+              </motion.div>
             )}
 
             {service.cards && service.cards.length > 0 && (
@@ -61,9 +78,26 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onOpenContac
                     {service.sectionTitle}
                   </h2>
                 )}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <motion.div
+                  className="grid grid-cols-1 md:grid-cols-2 gap-5"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.15 }}
+                  variants={{
+                    hidden: {},
+                    visible: { transition: { staggerChildren: 0.1 } },
+                  }}
+                >
                   {service.cards.map((card) => (
-                    <article key={card.title} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <motion.article
+                      key={card.title}
+                      variants={{
+                        hidden: { opacity: 0, y: 25 },
+                        visible: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+                      }}
+                      whileHover={{ y: -5 }}
+                      className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+                    >
                       <div className="flex gap-3 items-start">
                         <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                         <div>
@@ -71,9 +105,9 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onOpenContac
                           <p className="mt-2 text-sm text-slate-600 leading-6">{card.description}</p>
                         </div>
                       </div>
-                    </article>
+                    </motion.article>
                   ))}
-                </div>
+                </motion.div>
               </section>
             )}
 
@@ -124,10 +158,18 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onOpenContac
                 <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-7">Proven ERP Case Studies in Production</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {service.caseStudies.map((item) => (
-                    <article key={item.title} className="rounded-xl border border-slate-200 p-6 bg-white shadow-sm">
+                    <motion.article
+                        key={item.title}
+                        className="rounded-xl border border-slate-200 p-6 bg-white shadow-sm"
+                        initial={{ opacity: 0, y: 25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.15 }}
+                        transition={{ duration: 0.45 }}
+                        whileHover={{ y: -5 }}
+                      >
                       <h3 className="font-bold text-slate-900 text-lg">{item.title}</h3>
                       <p className="mt-2 text-sm text-slate-600 leading-6">{item.description}</p>
-                    </article>
+                    </motion.article>
                   ))}
                 </div>
               </section>
@@ -138,21 +180,35 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onOpenContac
                 <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-7">Our 6-Stage Security Audit Methodology</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {service.methodology.map((item) => (
-                    <article key={item.step} className="rounded-xl border border-slate-200 p-6 bg-white shadow-sm">
+                    <motion.article
+                      key={item.step}
+                      className="rounded-xl border border-slate-200 p-6 bg-white shadow-sm"
+                      initial={{ opacity: 0, y: 25 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.15 }}
+                      transition={{ duration: 0.45 }}
+                      whileHover={{ y: -5 }}
+                    >
                       <div className="text-sm font-bold text-blue-600">{item.step}</div>
                       <h3 className="mt-2 font-bold text-slate-900 text-lg">{item.title}</h3>
                       <p className="mt-2 text-sm text-slate-600 leading-6">{item.description}</p>
-                    </article>
+                    </motion.article>
                   ))}
                 </div>
               </section>
             )}
 
             {service.compliance && (
-              <section className="mt-14 rounded-2xl bg-slate-50 border border-slate-200 p-6 sm:p-8">
+              <motion.section
+                className="mt-14 rounded-2xl bg-slate-50 border border-slate-200 p-6 sm:p-8"
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5 }}
+              >
                 <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Compliance Readiness & Data Protection</h2>
                 <p className="mt-4 text-slate-600 leading-7">{service.compliance}</p>
-              </section>
+              </motion.section>
             )}
 
             {service.sectors && (
@@ -160,17 +216,31 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onOpenContac
                 <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-7">Software Solutions Tailored for Regional Sectors</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                   {service.sectors.map((sector) => (
-                    <article key={sector.title} className="rounded-xl border border-slate-200 p-6 bg-white shadow-sm">
+                    <motion.article
+                        key={sector.title}
+                        className="rounded-xl border border-slate-200 p-6 bg-white shadow-sm"
+                        initial={{ opacity: 0, y: 25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.15 }}
+                        transition={{ duration: 0.45 }}
+                        whileHover={{ y: -5 }}
+                      >
                       <h3 className="font-bold text-slate-900">{sector.title}</h3>
                       <p className="mt-2 text-sm text-slate-600 leading-6">{sector.description}</p>
-                    </article>
+                    </motion.article>
                   ))}
                 </div>
               </section>
             )}
 
             {service.office && (
-              <section className="mt-14 rounded-2xl bg-slate-50 border border-slate-200 p-6 sm:p-8">
+              <motion.section
+                className="mt-14 rounded-2xl bg-slate-50 border border-slate-200 p-6 sm:p-8"
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5 }}
+              >
                 <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Visit Our Development Center in Nashik</h2>
                 <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm">
                   <div className="flex gap-3"><MapPin className="w-5 h-5 text-blue-600 shrink-0" /><div><p className="font-semibold text-slate-900">Office Address</p><p className="mt-1 text-slate-600 leading-6">{service.office.address}</p></div></div>
@@ -178,11 +248,17 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onOpenContac
                   <div className="flex gap-3"><Mail className="w-5 h-5 text-blue-600 shrink-0" /><div><p className="font-semibold text-slate-900">Email</p><a href="mailto:info@technokraftservices.com" className="mt-1 inline-block text-slate-600 hover:text-blue-600">{service.office.email}</a></div></div>
                   <div className="flex gap-3"><Clock3 className="w-5 h-5 text-blue-600 shrink-0" /><div><p className="font-semibold text-slate-900">Working Hours</p><p className="mt-1 text-slate-600">{service.office.hours}</p></div></div>
                 </div>
-              </section>
+              </motion.section>
             )}
 
             {service.faqs && service.faqs.length > 0 && (
-              <section className="mt-14">
+              <motion.section
+                className="mt-14"
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5 }}
+              >
                 <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-7">Frequently Asked Questions</h2>
                 <div className="space-y-3">
                   {service.faqs.map((faq) => (
@@ -195,11 +271,17 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onOpenContac
                     </details>
                   ))}
                 </div>
-              </section>
+              </motion.section>
             )}
 
             {service.ctaTitle && (
-              <section className="mt-14">
+              <motion.section
+                className="mt-14"
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5 }}
+              >
                 <div className="rounded-2xl bg-slate-50 border border-slate-200 text-center p-7 sm:p-10">
                   <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">{service.ctaTitle}</h2>
                   {service.ctaText && <p className="mt-3 text-slate-600">{service.ctaText}</p>}
@@ -208,7 +290,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onOpenContac
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
-              </section>
+              </motion.section>
             )}
           </div>
         </section>

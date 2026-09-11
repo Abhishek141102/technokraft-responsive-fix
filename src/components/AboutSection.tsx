@@ -1,4 +1,5 @@
 import React from "react";
+import { motion, type Variants } from "motion/react";
 import { JourneyMilestones } from './JourneyMilestones';
 import {
   Eye,
@@ -14,6 +15,16 @@ import {
 interface AboutSectionProps {
   onOpenContact: () => void;
 }
+
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.28, ease: "easeOut" } },
+};
 
 const VALUES = [
   {
@@ -80,7 +91,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
     <section className="py-20 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Intro */}
-        <div className="max-w-3xl mx-auto text-center">
+        <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} className="max-w-3xl mx-auto text-center">
           <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold uppercase tracking-wider mb-4">
             About TechnoKraft Services
           </span>
@@ -99,10 +110,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             measurable outcomes. From planning to deployment and support, our
             team works with you at every step.
           </p>
-        </div>
+        </motion.div>
 
         {/* Vision & Mission */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="rounded-2xl bg-[#F8F9FB] border border-slate-200 p-8">
             <div className="w-12 h-12 rounded-lg bg-blue-600/10 flex items-center justify-center mb-5">
               <Eye className="w-6 h-6 text-blue-600" />
@@ -126,21 +137,27 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               drive sustainable operational efficiency.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         <JourneyMilestones />
 
         {/* Core Values */}
-        <div className="mt-16">
+        <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} className="mt-16">
           <h3 className="text-2xl font-bold text-slate-900 text-center flex items-center justify-center gap-2">
             <Heart className="w-5 h-5 text-blue-600" />
             Our Core Values
           </h3>
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {VALUES.map((value) => (
-              <div
+              <motion.div
                 key={value.title}
-                className="rounded-xl bg-white border border-slate-200 p-6 text-center hover:border-blue-400/60 hover:shadow-lg transition-all"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                whileHover={{ y: -4, scale: 1.012 }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
+                className="rounded-xl bg-white border border-slate-200 p-6 text-center hover:border-blue-400/60 hover:shadow-lg transition-shadow"
               >
                 <div className="w-11 h-11 mx-auto rounded-lg bg-blue-50 flex items-center justify-center mb-4">
                   <value.icon className="w-5.5 h-5.5 text-blue-600" />
@@ -151,15 +168,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 <p className="mt-2 text-xs text-slate-500 leading-relaxed">
                   {value.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         
 
         {/* CTA Section */}
-        <div className="mt-16 rounded-2xl bg-[#0B0F19] px-6 sm:px-10 py-12 text-center">
+        <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} className="mt-16 rounded-2xl bg-[#0B0F19] px-6 sm:px-10 py-12 text-center">
           <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
             Ready to Build Something Reliable?
           </h3>
@@ -175,10 +192,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             <span>Request a Consultation</span>
             <ArrowRight className="w-5 h-5" />
           </button>
-        </div>
+        </motion.div>
 
         {/* Leadership Team */}
-<div className="mt-16">
+<motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} className="mt-16">
   <h3 className="text-2xl font-bold text-slate-900 text-center">Our Leadership Team</h3>
   <p className="mt-2 text-sm text-slate-500 text-center max-w-xl mx-auto">
     People who combine engineering expertise with strong communication and a
@@ -186,8 +203,14 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
   </p>
   <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     {LEADERSHIP_TEAM.map((member) => (
-      <div
+      <motion.div
         key={member.name}
+        variants={cardVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.12 }}
+        whileHover={{ y: -4, scale: 1.012 }}
+        transition={{ duration: 0.18, ease: "easeOut" }}
         className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow bg-white"
       >
         {/* Top: gradient photo overlay */}
@@ -210,7 +233,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         </div>
 
         {/* Bottom: name, role, socials */}
-        <div className="py-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3 }}
+          className="py-6 text-center"
+        >
           <h4 className="text-base font-bold text-slate-900">{member.name}</h4>
           <p className="mt-1 text-sm text-blue-600">{member.role}</p>
 
@@ -247,11 +276,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               in
             </a>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     ))}
   </div>
-</div>
+</motion.div>
       </div>
     </section>
   );
