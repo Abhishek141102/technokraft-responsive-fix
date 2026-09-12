@@ -97,7 +97,7 @@ export const TeamStructure: React.FC = () => {
             Our Team
           </span>
 
-          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 text-center">
             Our Team Structure
           </h2>
 

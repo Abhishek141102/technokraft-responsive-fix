@@ -1,5 +1,6 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const MILESTONES = [
   {
@@ -41,109 +42,133 @@ const MILESTONES = [
 ];
 
 export const JourneyMilestones: React.FC = () => {
-  // Duplicate items create a seamless infinite marquee loop.
-  const marqueeItems = [...MILESTONES, ...MILESTONES];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const showPrevious = () => {
+    setDirection(-1);
+    setCurrentIndex((current) =>
+      current === 0 ? MILESTONES.length - 1 : current - 1,
+    );
+  };
+
+  const showNext = () => {
+    setDirection(1);
+    setCurrentIndex((current) =>
+      current === MILESTONES.length - 1 ? 0 : current + 1,
+    );
+  };
+
+  const item = MILESTONES[currentIndex];
 
   return (
-    <section className="py-20 mt-15 overflow-hidden bg-[#F1F4F8] border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="mt-15 overflow-hidden border-b border-slate-200 bg-[#F1F4F8] py-14 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="max-w-2xl mx-auto text-center"
+          className="mx-auto max-w-2xl text-center"
         >
-          <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold uppercase tracking-wider mb-4">
+          <span className="mb-4 inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600">
             Our Journey
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
             Milestones That Define Us
           </h2>
         </motion.div>
 
-        <div className="relative mt-14">
+        <div className="relative mx-auto mt-12 max-w-2xl sm:mt-14">
           {/* Timeline line */}
           <div className="absolute left-0 right-0 top-14 h-px bg-slate-300/70" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="relative w-full overflow-hidden"
+          {/* Previous button */}
+          <button
+            type="button"
+            onClick={showPrevious}
+            aria-label="Previous milestone"
+            className="absolute left-0 top-12 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-md transition-all hover:scale-105 hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:-left-5"
           >
-            <div className="journey-marquee flex w-max gap-6 sm:gap-8">
-            {marqueeItems.map((item, index) => (
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+
+          {/* Next button */}
+          <button
+            type="button"
+            onClick={showNext}
+            aria-label="Next milestone"
+            className="absolute right-0 top-12 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-md transition-all hover:scale-105 hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:-right-5"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+
+          <div className="overflow-hidden px-12 sm:px-16">
+            <AnimatePresence mode="wait" initial={false} custom={direction}>
               <motion.div
-                key={`${item.year}-${index}`}
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.22, ease: 'easeOut' }}
-                className="group shrink-0 w-[220px] sm:w-[240px] flex flex-col items-center text-center"
+                key={item.year}
+                custom={direction}
+                initial={{ opacity: 0, x: direction > 0 ? 50 : -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction > 0 ? -50 : 50 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+                className="flex min-h-[390px] flex-col items-center text-center"
               >
                 {/* Circular photo */}
                 <motion.div
-                  whileHover={{ scale: 1.08 }}
+                  whileHover={{ scale: 1.06 }}
                   transition={{ duration: 0.22, ease: 'easeOut' }}
-                  className="relative z-10 w-28 h-28 rounded-full overflow-hidden border-4 border-white bg-white shadow-md"
+                  className="relative z-10 h-28 w-28 shrink-0 overflow-hidden rounded-full border-4 border-white bg-white shadow-md"
                 >
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="h-full w-full object-cover"
                   />
                 </motion.div>
 
-                {/* Chevron year badge */}
-                <motion.div
-                  whileHover={{ scale: 1.04 }}
-                  className={`mt-6 w-full h-14 flex items-center justify-center text-white text-xl font-extrabold ${item.color} shadow-sm`}
+                {/* Year badge */}
+                <div
+                  className={`mt-6 flex h-14 w-full items-center justify-center text-xl font-extrabold text-white shadow-sm ${item.color}`}
                   style={{
                     clipPath:
                       'polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%, 12% 50%)',
                   }}
                 >
                   {item.year}
-                </motion.div>
+                </div>
 
                 <h3 className="mt-5 text-base font-bold text-slate-900">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm text-slate-500 leading-relaxed">
+                <p className="mt-2 max-w-md text-base leading-relaxed text-slate-500">
                   {item.description}
                 </p>
               </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Slide indicators */}
+          <div className="mt-5 flex justify-center gap-2">
+            {MILESTONES.map((milestone, index) => (
+              <button
+                key={milestone.year}
+                type="button"
+                onClick={() => {
+                  setDirection(index > currentIndex ? 1 : -1);
+                  setCurrentIndex(index);
+                }}
+                aria-label={`Go to ${milestone.year} milestone`}
+                className={`h-2 rounded-full transition-all ${
+                  index === currentIndex
+                    ? 'w-6 bg-blue-600'
+                    : 'w-2 bg-slate-300 hover:bg-slate-400'
+                }`}
+              />
             ))}
-            </div>
-          </motion.div>
+          </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes journeyMarquee {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(calc(-50% - 1rem));
-          }
-        }
-
-        .journey-marquee {
-          animation: journeyMarquee 32s linear infinite;
-          will-change: transform;
-        }
-
-        .journey-marquee:hover {
-          animation-play-state: paused;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .journey-marquee {
-            animation-play-state: paused;
-          }
-        }
-      `}</style>
     </section>
   );
 };

@@ -104,11 +104,14 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <h3 className="font-bold text-slate-900">Open Hours</h3>
                   <p className="mt-1 text-sm text-slate-600">
-                    Mon - Sat: 09:30 AM - 08:30 PM
+                    Mon - Sat
+                    <br />
+                    09:30 AM - 08:30 PM
                   </p>
                 </div>
               </div>
             </div>
+            
 
             {/* Google Maps Preview */}
             <div className="mt-5 w-full overflow-hidden rounded-xl border border-slate-200 shadow-sm">

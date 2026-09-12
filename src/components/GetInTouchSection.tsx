@@ -46,7 +46,9 @@ export const GetInTouchSection: React.FC = () => {
       title: "Open Hours",
       content: (
         <p className="mt-1 text-sm text-slate-600">
-          Mon - Sat: 09:30 AM - 08:30 PM
+          Mon - Sat
+          <br />
+          09:30 AM - 08:30 PM
         </p>
       ),
     },
@@ -63,7 +65,7 @@ export const GetInTouchSection: React.FC = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.65, ease: "easeOut" }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
               Get In Touch With Our Team
             </h2>
 

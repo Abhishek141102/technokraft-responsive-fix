@@ -121,7 +121,7 @@ export const ProcessFramework: React.FC = () => {
                     {item.title}
                   </h3>
 
-                  <p className="text-xs text-slate-500 leading-normal px-1 max-w-[170px]">
+                  <p className="text-sm text-slate-500 leading-normal px-1 max-w-[170px]">
                     {item.description}
                   </p>
                 </motion.div>

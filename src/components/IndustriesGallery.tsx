@@ -24,31 +24,28 @@ export const IndustriesGallery: React.FC<IndustriesGalleryProps> = ({
     <section id="industries" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-10"
+          className="text-center max-w-3xl mx-auto mb-10"
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="max-w-xl">
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-              Industries We Serve
-            </h2>
-            <p className="mt-2 text-base text-slate-600">
-              We understand your industry. We build solutions that fit.
-            </p>
-          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+            Industries We Serve
+          </h2>
 
-          <div>
-            <button
-              id="view-all-industries-link"
-              onClick={() => onNavigate("our-work")}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 cursor-pointer group"
-            >
-              <span>View All Industries</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
+          <p className="mt-3 text-base sm:text-lg leading-relaxed text-slate-600">
+            We understand your industry. We build solutions that fit.
+          </p>
+
+          <button
+            id="view-all-industries-link"
+            onClick={() => onNavigate("our-work")}
+            className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 cursor-pointer group"
+          >
+            <span>View All Industries</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
         </motion.div>
 
         <motion.div

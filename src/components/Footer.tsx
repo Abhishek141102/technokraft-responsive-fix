@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({
               <a
                 href="https://www.linkedin.com/company/ttsnashik/"
                 aria-label="LinkedIn"
-                className="w-8 h-8 rounded-md bg-slate-800/80 hover:bg-blue-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs font-bold"
+                className="w-8 h-8 rounded-md bg-slate-800/80 hover:bg-blue-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-sm font-bold"
               >
                 in
               </a>
@@ -72,7 +72,7 @@ export const Footer: React.FC<FooterProps> = ({
               <a
                 href="https://www.facebook.com/tts.net.in/"
                 aria-label="Facebook"
-                className="w-8 h-8 rounded-md bg-slate-800/80 hover:bg-blue-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs font-bold"
+                className="w-8 h-8 rounded-md bg-slate-800/80 hover:bg-blue-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-sm font-bold"
               >
                 f
               </a>
@@ -372,7 +372,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <p className="text-slate-300 font-semibold mb-1">Email</p>
                 <a
                   href="mailto:technokraftservicesllp@gmail.com"
-                  className="hover:text-white transition-colors break-words"
+                  className="hover:text-white transition-colors whitespace-nowrap"
                 >
                   technokraftservicesllp@gmail.com
                 </a>
