@@ -11,7 +11,11 @@ import {
 
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: "easeOut" },
+  },
 };
 
 export const ContactSection: React.FC = () => {
@@ -25,7 +29,13 @@ export const ContactSection: React.FC = () => {
   return (
     <section className="min-h-screen bg-white">
       {/* Hero */}
-      <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} className="bg-[#0B0F19] text-white">
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className="bg-[#0B0F19] text-white"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <p className="text-sm font-semibold text-blue-400 uppercase tracking-widest">
             Contact Us
@@ -45,7 +55,13 @@ export const ContactSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Office information */}
-          <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} className="lg:col-span-5">
+          <motion.div
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+            className="lg:col-span-5"
+          >
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
               Get In Touch With Our Team
             </h2>
@@ -111,7 +127,6 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
             </div>
-            
 
             {/* Google Maps Preview */}
             <div className="mt-5 w-full overflow-hidden rounded-xl border border-slate-200 shadow-sm">
@@ -127,8 +142,14 @@ export const ContactSection: React.FC = () => {
           </motion.div>
 
           {/* Contact form */}
-          <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} className="lg:col-span-7">
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-7 lg:p-8">
+          <motion.div
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+            className="lg:col-span-7 h-full"
+          >
+            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-7 lg:p-8 min-h-[595px] h-full flex flex-col">
               {submitted ? (
                 <div className="min-h-[420px] flex flex-col items-center justify-center text-center">
                   <CheckCircle2 className="w-14 h-14 text-emerald-500" />
@@ -155,7 +176,10 @@ export const ContactSection: React.FC = () => {
                     Share a few details and we&apos;ll get back to you.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="mt-6 space-y-5 flex flex-1 flex-col"
+                  >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
                         <label className="text-sm font-semibold text-slate-700">
@@ -217,7 +241,7 @@ export const ContactSection: React.FC = () => {
                         name="message"
                         rows={6}
                         placeholder="Tell us about your project or requirement..."
-                        className="mt-2 w-full resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                        className="mt-2 w-full min-h-[145px] resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                       />
                     </div>
 

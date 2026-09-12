@@ -64,26 +64,22 @@ const LEADERSHIP_TEAM = [
   {
     name: "Rahul Makasare",
     role: "Founder & Director",
-    description:
-      "Driving strategic technology direction, enterprise architecture, and long-term client success across digital transformation initiatives.",
+    image: "/images/leadership-1.jpg",
   },
   {
     name: "Arvind Thevar",
     role: "Founder & Director",
-    description:
-      "Leading operational excellence, cross-platform product engineering, and cutting-edge software delivery standards.",
+    image: "/images/leadership-2.jpg",
   },
   {
     name: "Sonali Thevar",
     role: "Director",
-    description:
-      "Guiding strategic growth, quality assurance frameworks, client relations, and organizational development.",
+    image: "/images/leadership-3.jpg",
   },
   {
     name: "Siddhant Dadel",
     role: "Director",
-    description:
-      "Overseeing agile technical operations, full-stack solution architectures, and innovation in digital engineering.",
+    image: "/images/leadership-4.jpg",
   },
 ];
 
@@ -139,8 +135,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             <div className="w-12 h-12 rounded-lg bg-blue-600/10 flex items-center justify-center mb-5 mx-auto">
               <Eye className="w-6 h-6 text-blue-600" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 text-center">Our Vision</h3>
-            <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            <h3 className="text-xl font-bold text-slate-900 text-center">
+              Our Vision
+            </h3>
+            <p className="mt-3 text-base text-slate-600 leading-relaxed text-center">
               To be the premier technology innovation hub recognized globally
               for world-class IT engineering, client success, and transformative
               digital experiences.
@@ -151,8 +149,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             <div className="w-12 h-12 rounded-lg bg-blue-600/10 flex items-center justify-center mb-5 mx-auto">
               <Target className="w-6 h-6 text-blue-600" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 text-center">Our Mission</h3>
-            <p className="mt-3 text-base text-slate-600 leading-relaxed">
+            <h3 className="text-xl font-bold text-slate-900 text-center">
+              Our Mission
+            </h3>
+            <p className="mt-3 text-base text-slate-600 leading-relaxed text-center">
               To empower businesses worldwide through reliable, scalable, and
               intelligent software solutions that accelerate digital growth and
               drive sustainable operational efficiency.
@@ -161,7 +161,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         </motion.div>
 
         <JourneyMilestones />
-
 
         {/* Leadership Team */}
         <motion.div
@@ -174,10 +173,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 text-center">
             Our Leadership Team
           </h2>
-          <p className="mt-2 text-base text-slate-500 text-center max-w-xl mx-auto">
-            People who combine engineering expertise with strong communication
-            and a quality-first mindset.
-          </p>
+
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {LEADERSHIP_TEAM.map((member) => (
               <motion.div
@@ -190,24 +186,14 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 transition={{ duration: 0.18, ease: "easeOut" }}
                 className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow bg-white"
               >
-                {/* Top: gradient photo overlay */}
-                <div className="relative h-64 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center px-6 text-center">
+                <div className="relative h-64 bg-slate-100">
                   <img
-                    src={`https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&size=400&background=1D4ED8&color=1D4ED8`}
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-cover opacity-30"
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
                   />
-                  <div className="relative z-10">
-                    <p className="text-white text-sm font-medium leading-relaxed">
-                      {member.description}
-                    </p>
-                    <button className="mt-5 px-5 py-2 rounded-md bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-sm font-semibold transition-colors cursor-pointer">
-                      Read More
-                    </button>
-                  </div>
                 </div>
 
-                {/* Bottom: name, role, socials */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -226,7 +212,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Facebook"
-                      className="w-8 h-8 rounded-md border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors text-xs font-bold"
+                      className="w-8 h-8 rounded-md border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors text-sm font-bold"
                     >
                       f
                     </a>
@@ -265,7 +251,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="LinkedIn"
-                      className="w-8 h-8 rounded-md border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors text-xs font-bold"
+                      className="w-8 h-8 rounded-md border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors text-sm font-bold"
                     >
                       in
                     </a>
