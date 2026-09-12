@@ -80,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({
               {/* WhatsApp */}
 
               <a
-                href="https://wa.me/918408000048"
+                href="https://wa.me/919370174424"
                 aria-label="WhatsApp"
                 className="w-8 h-8 rounded-md bg-slate-800/80 hover:bg-blue-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
               >
@@ -362,10 +362,10 @@ export const Footer: React.FC<FooterProps> = ({
               <div>
                 <p className="text-slate-300 font-semibold mb-1">Mobile</p>
                 <a
-                  href="tel:+918408000048"
+                  href="tel:+919370174424"
                   className="hover:text-white transition-colors"
                 >
-                  +91 84080 00048
+                  +91 93701 74424
                 </a>
               </div>
               <div>

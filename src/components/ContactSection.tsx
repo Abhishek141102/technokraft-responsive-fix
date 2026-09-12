@@ -74,10 +74,10 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <h3 className="font-bold text-slate-900">Call Us</h3>
                   <a
-                    href="tel:+918408000048"
+                    href="tel:+919370174424"
                     className="mt-1 inline-block text-sm text-slate-600 hover:text-blue-600"
                   >
-                    +91 84080 00048
+                    +91 93701 74424
                   </a>
                 </div>
               </div>

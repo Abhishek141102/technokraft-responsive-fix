@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { PageRoute } from "./types";
 import { Navbar } from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
@@ -56,9 +56,31 @@ export default function App() {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
+  const scrollToTopInstantly = () => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    // Temporarily disable any global CSS scroll-behavior: smooth.
+    const previousHtmlBehavior = html.style.scrollBehavior;
+    const previousBodyBehavior = body.style.scrollBehavior;
+
+    html.style.scrollBehavior = "auto";
+    body.style.scrollBehavior = "auto";
+
+    window.scrollTo(0, 0);
+    html.scrollTop = 0;
+    body.scrollTop = 0;
+
+    // Restore the original styles after the scroll is completed.
+    requestAnimationFrame(() => {
+      html.style.scrollBehavior = previousHtmlBehavior;
+      body.style.scrollBehavior = previousBodyBehavior;
+    });
+  };
+
   const handleNavigate = (page: PageRoute) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToTopInstantly();
 
     // Use hash routing for GitHub Pages.
     // GitHub Pages does not provide SPA fallback for paths such as
@@ -77,8 +99,13 @@ export default function App() {
     if (window.location.hash !== hash) {
       window.history.pushState({}, "", hash);
     }
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToTopInstantly();
   };
+
+  // Reset scroll after the new page has rendered as well.
+  useLayoutEffect(() => {
+    scrollToTopInstantly();
+  }, [currentPage, selectedServiceSlug]);
 
   const handleSelectGoal = (goalTitle: string) => {
     setSelectedGoalFilter(goalTitle);

@@ -22,10 +22,10 @@ export const GetInTouchSection: React.FC = () => {
       title: "Call Us",
       content: (
         <a
-          href="tel:+918408000048"
+          href="tel:+919370174424"
           className="mt-1 inline-block text-sm text-slate-600 hover:text-blue-600 transition-colors"
         >
-          +91 84080 00048
+          +91 93701 74424
         </a>
       ),
     },

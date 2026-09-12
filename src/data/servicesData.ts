@@ -416,7 +416,7 @@ export const servicesData: ServiceData[] = [
     ],
     "office": {
       "address": "3rd Floor, Kanchwala Avenue, Above Viju's Dabeli, Thatte Nagar Marg, College Road, Nashik, Maharashtra - 422005",
-      "phone": "+91 84080 00048",
+      "phone": "+91 93701 74424",
       "email": "info@technokraftservices.com",
       "hours": "Monday – Saturday: 9:30 AM to 8:30 PM (Sunday: Closed)"
     },
