@@ -89,10 +89,10 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <h3 className="font-bold text-slate-900">Email Us</h3>
                   <a
-                    href="mailto:info@technokraftservices.com"
+                    href="mailto:technokraftservicesllp@gmail.com"
                     className="mt-1 inline-block text-sm text-slate-600 hover:text-blue-600"
                   >
-                    info@technokraftservices.com
+                    technokraftservicesllp@gmail.com
                   </a>
                 </div>
               </div>

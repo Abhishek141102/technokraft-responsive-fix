@@ -371,10 +371,10 @@ export const Footer: React.FC<FooterProps> = ({
               <div>
                 <p className="text-slate-300 font-semibold mb-1">Email</p>
                 <a
-                  href="mailto:info@technokraftservices.com"
+                  href="mailto:technokraftservicesllp@gmail.com"
                   className="hover:text-white transition-colors break-words"
                 >
-                  info@technokraftservices.com
+                  technokraftservicesllp@gmail.com
                 </a>
               </div>
               <div>
