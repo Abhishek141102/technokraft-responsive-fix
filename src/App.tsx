@@ -12,7 +12,7 @@ import { OurWorkPortfolio } from "./components/OurWorkPortfolio";
 import { Footer } from "./components/Footer";
 import { ConsultationModal } from "./components/ConsultationModal";
 import { AboutSection } from "./components/AboutSection";
-import { ContactSection } from './components/ContactSection';
+import { ContactSection } from "./components/ContactSection";
 import { GetInTouchSection } from "./components/GetInTouchSection";
 import { ServiceDetail } from "./components/ServiceDetail";
 
@@ -39,12 +39,17 @@ export default function App() {
   };
 
   const [currentPage, setCurrentPage] = useState<PageRoute>(getInitialRoute());
-  const [selectedServiceSlug, setSelectedServiceSlug] = useState<string | null>(getInitialServiceSlug());
+  const [selectedServiceSlug, setSelectedServiceSlug] = useState<string | null>(
+    getInitialServiceSlug(),
+  );
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [selectedGoalFilter, setSelectedGoalFilter] =
     useState<string>("All Goals");
   const [selectedIndustryFilter, setSelectedIndustryFilter] =
     useState<string>("All Industries");
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
+    "capernaum-erp",
+  );
 
   // Sync state with popstate (browser back/forward)
   useEffect(() => {
@@ -158,6 +163,7 @@ export default function App() {
 
         {currentPage === "case-study" && (
           <CaseStudyDetail
+            projectId={selectedProjectId}
             onNavigate={handleNavigate}
             onOpenContact={() => setIsConsultationOpen(true)}
           />
@@ -167,6 +173,9 @@ export default function App() {
           <OurWorkPortfolio
             onNavigate={handleNavigate}
             onOpenContact={() => setIsConsultationOpen(true)}
+            onSelectProject={(projectId) => {
+              setSelectedProjectId(projectId);
+            }}
             selectedGoalFilter={selectedGoalFilter}
             selectedIndustryFilter={selectedIndustryFilter}
           />
@@ -176,9 +185,7 @@ export default function App() {
           <AboutSection onOpenContact={() => setIsConsultationOpen(true)} />
         )}
 
-        {currentPage === "contact" && (
-          <ContactSection/>
-        )}
+        {currentPage === "contact" && <ContactSection />}
       </main>
 
       {/* Global Dark Theme Footer */}

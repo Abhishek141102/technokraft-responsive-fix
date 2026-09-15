@@ -22,29 +22,508 @@ import {
   Monitor,
 } from "lucide-react";
 import { PageRoute } from "../types";
-import { ROADMAP_PHASES, TESTIMONIALS } from "../data/mockData";
+import {
+  PORTFOLIO_PROJECTS,
+  ROADMAP_PHASES,
+  TESTIMONIALS,
+} from "../data/mockData";
+
+const PROJECT_IMAGES: Record<string, string> = {
+  "capernaum-erp": "capernaum_home.png",
+  "focus-coaching-erp": "focus_home.jpeg",
+  "rejos-logistics-crm": "rejos_home.png",
+  "irasa-ecommerce": "irasa_home.png",
+  "intern-management-system": "ims_home.png",
+  "crm-training-management": "crm_home.png",
+  "powerbi-courses-platform": "powerbi_home.png",
+  "ims-mobile-app": "ims_mobile_app.png",
+  "crm-mobile-app": "crm_mobile_home.png",
+  "medical-coding-assessment": "medical_coding.jpeg",
+  "training-assessment-platform": "training_assessment.jpg",
+  "amazon-reviews-ai": "amazon_customer.jpeg",
+  "startup-funding-predictor": "startup_fund.png",
+};
+
+type ProjectDetail = {
+  title: string;
+  subtitle: string;
+  industry: string;
+  businessType: string;
+  engagement: string;
+  timeline: string;
+  status: string;
+  heroLabel: string;
+  overview: string;
+  challenge: string;
+  approach: string;
+  solution: string;
+  features: string[];
+  impact: { value: string; label: string }[];
+  testimonial?: { quote: string; author: string; designation: string };
+};
+
+const PROJECT_DETAILS: Record<string, ProjectDetail> = {
+  "capernaum-erp": {
+    title: "Capernaum ERP: Streamlining Enterprise Operations",
+    subtitle:
+      "An integrated ERP solution designed to support operational growth, account orchestration and revenue milestones.",
+    industry: "Capernaum Solutions",
+    businessType: "Enterprise Business",
+    engagement: "Custom ERP Development",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Enterprise ERP Platform",
+    overview:
+      "Capernaum ERP brings core business operations into one connected platform, helping teams manage operational activities, coordinate accounts and maintain visibility into business performance.",
+    challenge:
+      "The business needed a centralized system to manage growing operational requirements, reduce disconnected workflows and improve visibility across teams.",
+    approach:
+      "We studied existing operational workflows, identified repetitive tasks and designed a centralized ERP architecture with role-based access, connected modules and structured reporting.",
+    solution:
+      "The ERP platform connects operational workflows, account management and business reporting into a single digital ecosystem.",
+    features: [
+      "Centralized enterprise operations dashboard",
+      "Account and customer orchestration",
+      "Revenue milestone tracking",
+      "Role-based access and permissions",
+      "Workflow-based operational management",
+      "Business reporting and performance visibility",
+    ],
+    impact: [
+      { value: "Centralized", label: "Operational management" },
+      { value: "Improved", label: "Account visibility" },
+      { value: "Connected", label: "Business workflows" },
+      { value: "Scalable", label: "ERP architecture" },
+    ],
+  },
+  "focus-coaching-erp": {
+    title: "Focus Coaching ERP: Managing Education Operations",
+    subtitle:
+      "A student management platform covering fee collections, batch attendance, exam analytics and multiple course streams.",
+    industry: "Focus Coaching Classes",
+    businessType: "Education",
+    engagement: "Custom ERP Development",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Education Management ERP",
+    overview:
+      "Focus Coaching ERP helps coaching institute teams manage students, batches, fees, attendance and examination information from one platform, supporting 10+ course streams.",
+    challenge:
+      "The institute required a centralized system to manage student records, fee collections, batch operations, attendance and exam performance without scattered manual records.",
+    approach:
+      "We structured the platform around academic and administrative workflows, creating modules for student management, fees, batches, attendance and analytics.",
+    solution:
+      "The solution provides an integrated education ERP that connects academic administration with financial and performance tracking.",
+    features: [
+      "Student admission and profile management",
+      "Fee collection and payment tracking",
+      "Batch and class management",
+      "Student attendance tracking",
+      "Exam and performance analytics",
+      "Support for 10+ course streams",
+    ],
+    impact: [
+      { value: "10+", label: "Course streams supported" },
+      { value: "Centralized", label: "Student records" },
+      { value: "Automated", label: "Fee tracking" },
+      { value: "Real-time", label: "Academic visibility" },
+    ],
+  },
+  "rejos-logistics-crm": {
+    title: "Rejos Logistics CRM: Simplifying Freight Operations",
+    subtitle:
+      "A logistics CRM supporting freight records, driver allocations, rate cards and automated billing workflows.",
+    industry: "Rejos Transport",
+    businessType: "Logistics & Transportation",
+    engagement: "Custom CRM Development",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Logistics CRM Platform",
+    overview:
+      "Rejos Logistics CRM manages freight operations and simplifies information flow between transport, driver and billing teams, supporting more than 39,000 Lorry Receipts.",
+    challenge:
+      "The logistics operation required better control over freight records, driver assignments, rate cards and billing activities while handling a high volume of transactions.",
+    approach:
+      "We mapped the freight lifecycle from Lorry Receipt creation to driver allocation, rate management and billing around connected operational records.",
+    solution:
+      "The CRM centralizes freight operations, driver management, rate cards and automated billing into one workflow-driven platform.",
+    features: [
+      "Lorry Receipt management",
+      "Driver allocation and tracking",
+      "Transport rate card management",
+      "Automated billing workflows",
+      "Freight record search and reporting",
+      "Centralized logistics operations",
+    ],
+    impact: [
+      { value: "39,000+", label: "Lorry Receipts managed" },
+      { value: "Connected", label: "Freight workflows" },
+      { value: "Automated", label: "Billing operations" },
+      { value: "Centralized", label: "Driver allocation" },
+    ],
+  },
+  "irasa-ecommerce": {
+    title: "Irasa E-Commerce: A Luxury Fragrance Experience",
+    subtitle:
+      "A luxury perfume e-commerce platform with a custom perfume builder, checkout experience and scent discovery.",
+    industry: "Irasa Perfumes",
+    businessType: "E-Commerce",
+    engagement: "Web Application Development",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Luxury Fragrance E-Commerce",
+    overview:
+      "Irasa is a luxury fragrance e-commerce experience that helps customers explore scents, customize perfumes and complete purchases through a refined online shopping journey.",
+    challenge:
+      "The brand needed an engaging digital storefront that communicated the luxury nature of its products while making fragrance discovery and customization simple.",
+    approach:
+      "We focused on product presentation, scent discovery, custom perfume configuration and a streamlined checkout experience.",
+    solution:
+      "The platform combines an elegant e-commerce interface with product discovery and custom perfume-building functionality.",
+    features: [
+      "Luxury product catalogue",
+      "Custom perfume builder",
+      "Scent discovery experience",
+      "Product detail pages",
+      "Cart and checkout flow",
+      "Responsive shopping experience",
+    ],
+    impact: [
+      { value: "Custom", label: "Perfume builder" },
+      { value: "Smooth", label: "Checkout journey" },
+      { value: "Premium", label: "Brand experience" },
+      { value: "Responsive", label: "E-commerce platform" },
+    ],
+  },
+  "intern-management-system": {
+    title: "Intern Management System: Connecting Teams and Interns",
+    subtitle:
+      "An internal management platform with admin and college dashboards, attendance, task records and intern tracking.",
+    industry: "TechnoKraft Solutions",
+    businessType: "Internal Operations",
+    engagement: "Web Application Development",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Intern Management Platform",
+    overview:
+      "The Intern Management System supports internal teams and college coordinators in managing interns, attendance, tasks and communication from a centralized platform.",
+    challenge:
+      "Managing intern attendance, task records, college coordination and support requests manually made it difficult to maintain consistent records.",
+    approach:
+      "We created separate admin and college-facing dashboards with connected records for attendance, tasks, intern progress and communication.",
+    solution:
+      "The system centralizes intern operations and provides visibility into attendance, assigned tasks, progress and support communication.",
+    features: [
+      "Admin dashboard",
+      "College dashboard",
+      "Punch-in and punch-out attendance",
+      "Jira task record integration",
+      "Intern progress tracking",
+      "Email support and communication",
+    ],
+    impact: [
+      { value: "Centralized", label: "Intern records" },
+      { value: "Connected", label: "Admin and college dashboards" },
+      { value: "Tracked", label: "Attendance and tasks" },
+      { value: "Improved", label: "Operational visibility" },
+    ],
+  },
+  "crm-training-management": {
+    title: "CRM Training Management Platform",
+    subtitle:
+      "A platform that manages the complete journey from enquiry to admission, fees, certificates and reporting.",
+    industry: "Training Institute",
+    businessType: "Education & Training",
+    engagement: "Custom CRM Development",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Training CRM Platform",
+    overview:
+      "The CRM Training Management platform helps training institutes manage enquiries, admissions, student fees, certificate generation and operational reporting through a connected CRM.",
+    challenge:
+      "Training teams needed a structured way to track prospective students from initial enquiry through admission, payment and course completion.",
+    approach:
+      "We designed a workflow-based CRM connecting enquiry management, admission processing, fee tracking, certificate generation and reporting.",
+    solution:
+      "The platform provides a single source of truth for student enquiries, admissions, fees and training operations.",
+    features: [
+      "Enquiry management",
+      "Admission workflow",
+      "Student fee tracking",
+      "Certificate generation",
+      "Follow-up management",
+      "Management reporting",
+    ],
+    impact: [
+      { value: "End-to-end", label: "Student journey" },
+      { value: "Automated", label: "Certificate generation" },
+      { value: "Centralized", label: "Fee information" },
+      { value: "Structured", label: "Enquiry follow-ups" },
+    ],
+  },
+  "powerbi-courses-platform": {
+    title: "Power BI Courses Platform",
+    subtitle:
+      "A learning platform with live lectures, video materials, progress analytics and automated certificates.",
+    industry: "Corporate Training",
+    businessType: "Learning & Development",
+    engagement: "Web Application Development",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Learning Analytics Platform",
+    overview:
+      "The Power BI Courses Platform provides learners with live lectures, video learning materials, progress tracking and course completion certificates.",
+    challenge:
+      "The training operation needed a digital platform to deliver learning content, track learner progress and simplify course completion management.",
+    approach:
+      "We combined course content delivery, live learning, progress analytics and certificate automation into a unified learning platform.",
+    solution:
+      "The platform supports the complete digital learning cycle from lectures and video materials to progress monitoring and certification.",
+    features: [
+      "Live lecture management",
+      "Video learning materials",
+      "Course progress tracking",
+      "Learner analytics",
+      "Course completion tracking",
+      "Automatic certificate generation",
+    ],
+    impact: [
+      { value: "Live", label: "Learning delivery" },
+      { value: "Automated", label: "Course certificates" },
+      { value: "Tracked", label: "Learner progress" },
+      { value: "Centralized", label: "Course materials" },
+    ],
+  },
+  "ims-mobile-app": {
+    title: "IMS Mobile App",
+    subtitle:
+      "A mobile application for attendance, task tracking and operational alerts.",
+    industry: "TechnoKraft Solutions",
+    businessType: "Internal Operations",
+    engagement: "Mobile App Development",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Mobile Operations App",
+    overview:
+      "The IMS mobile application gives users access to attendance, task tracking and important operational alerts through a convenient mobile experience.",
+    challenge:
+      "Users needed access to essential attendance and task information without depending entirely on desktop systems.",
+    approach:
+      "We designed a mobile-first experience focused on quick access, simple interactions and timely operational updates.",
+    solution:
+      "The mobile app extends the intern management workflow to smartphones, making attendance, tasks and alerts accessible on the go.",
+    features: [
+      "Mobile attendance management",
+      "Task tracking",
+      "Operational alerts",
+      "User-friendly mobile dashboard",
+      "Responsive mobile workflows",
+    ],
+    impact: [
+      { value: "Mobile", label: "Operational access" },
+      { value: "Real-time", label: "Task visibility" },
+      { value: "Quick", label: "Attendance actions" },
+      { value: "Timely", label: "Operational alerts" },
+    ],
+  },
+  "crm-mobile-app": {
+    title: "CRM Mobile App",
+    subtitle:
+      "A mobile CRM for sales and counsellor teams to access leads, follow-ups and fee status.",
+    industry: "Sales & Institute Teams",
+    businessType: "Sales & Education",
+    engagement: "Mobile App Development",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Mobile CRM Platform",
+    overview:
+      "The CRM mobile application allows sales and counsellor teams to access student leads, manage follow-ups and review fee status from their mobile devices.",
+    challenge:
+      "Sales and counsellor teams needed flexible access to lead information and student records while working away from their desks.",
+    approach:
+      "We prioritized mobile access to important CRM workflows, including lead review, follow-up updates and fee status visibility.",
+    solution:
+      "The application brings essential CRM capabilities to mobile users and helps teams maintain continuity in sales and counselling activities.",
+    features: [
+      "Student lead access",
+      "Lead follow-up management",
+      "Counsellor dashboard",
+      "Fee status visibility",
+      "Mobile CRM records",
+      "Sales workflow support",
+    ],
+    impact: [
+      { value: "Mobile", label: "Lead access" },
+      { value: "Faster", label: "Follow-up management" },
+      { value: "Connected", label: "Sales workflows" },
+      { value: "Clear", label: "Fee visibility" },
+    ],
+  },
+  "medical-coding-assessment": {
+    title: "Medical Coding Assessment Platform",
+    subtitle:
+      "A digital assessment platform for medical coding evaluation and performance tracking.",
+    industry: "Medical Training",
+    businessType: "Assessment & Training",
+    engagement: "Web Application Development",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Medical Assessment Platform",
+    overview:
+      "The Medical Coding Assessment Platform supports digital assessments and helps training teams evaluate learner performance through a structured online experience.",
+    challenge:
+      "The assessment process required a centralized digital environment for conducting tests, recording responses and reviewing learner performance.",
+    approach:
+      "We structured the platform around assessment delivery, learner interaction, result processing and performance visibility.",
+    solution:
+      "The platform digitizes medical coding assessments and creates a consistent evaluation workflow.",
+    features: [
+      "Online assessment management",
+      "Medical coding question sets",
+      "Learner response tracking",
+      "Assessment result management",
+      "Performance evaluation",
+    ],
+    impact: [
+      { value: "Digital", label: "Assessment delivery" },
+      { value: "Structured", label: "Evaluation process" },
+      { value: "Centralized", label: "Assessment records" },
+      { value: "Trackable", label: "Learner performance" },
+    ],
+  },
+  "training-assessment-platform": {
+    title: "Training Assessment Platform",
+    subtitle:
+      "An online assessment solution for conducting training evaluations and tracking learner outcomes.",
+    industry: "Corporate Training",
+    businessType: "Learning & Development",
+    engagement: "Web Application Development",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Training Assessment System",
+    overview:
+      "The Training Assessment Platform enables organizations and training teams to conduct online evaluations, manage assessment content and review learner outcomes.",
+    challenge:
+      "Training teams needed a reliable digital assessment process that reduced manual evaluation work and provided better visibility into learner results.",
+    approach:
+      "We developed a structured assessment workflow with digital question sets, response handling and result management.",
+    solution:
+      "The platform provides a centralized environment for training assessments and learner evaluation.",
+    features: [
+      "Online training assessments",
+      "Question and test management",
+      "Learner response tracking",
+      "Result management",
+      "Performance reporting",
+    ],
+    impact: [
+      { value: "Online", label: "Assessment process" },
+      { value: "Centralized", label: "Test management" },
+      { value: "Trackable", label: "Learner results" },
+      { value: "Efficient", label: "Evaluation workflow" },
+    ],
+  },
+  "amazon-reviews-ai": {
+    title: "Amazon Reviews AI Analytics",
+    subtitle:
+      "An AI-based solution for analysing customer reviews and extracting useful product insights.",
+    industry: "E-Commerce Analytics",
+    businessType: "E-Commerce & AI",
+    engagement: "AI & Machine Learning",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "AI Review Analytics",
+    overview:
+      "The Amazon Reviews AI project analyses customer reviews to identify sentiment, recurring themes and useful product feedback.",
+    challenge:
+      "Large volumes of customer reviews are difficult to analyse manually, making it challenging to identify common complaints, positive feedback and improvement opportunities.",
+    approach:
+      "We used an AI-driven analysis workflow to process review data and organize customer feedback into meaningful insights.",
+    solution:
+      "The platform transforms raw customer reviews into structured insights that can support product and business decisions.",
+    features: [
+      "Customer review processing",
+      "AI-based sentiment analysis",
+      "Review categorization",
+      "Feedback insight extraction",
+      "Product review analytics",
+    ],
+    impact: [
+      { value: "AI-driven", label: "Review analysis" },
+      { value: "Structured", label: "Customer feedback" },
+      { value: "Actionable", label: "Product insights" },
+      { value: "Scalable", label: "Review processing" },
+    ],
+  },
+  "startup-funding-predictor": {
+    title: "Startup Funding Predictor",
+    subtitle:
+      "A predictive analytics solution designed to estimate startup funding outcomes using data-driven insights.",
+    industry: "Venture Ecosystem",
+    businessType: "FinTech & Analytics",
+    engagement: "AI & Machine Learning",
+    timeline: "Ongoing",
+    status: "Completed",
+    heroLabel: "Predictive Analytics Platform",
+    overview:
+      "The Startup Funding Predictor uses startup-related data to generate data-driven funding predictions and support early-stage business analysis.",
+    challenge:
+      "Startup funding decisions involve multiple variables, and founders or analysts need better ways to interpret data and identify funding possibilities.",
+    approach:
+      "We structured the project around data preparation, feature analysis and predictive modelling to generate useful funding-related insights.",
+    solution:
+      "The platform applies predictive analytics to startup data and presents the resulting insights in an accessible format.",
+    features: [
+      "Startup data analysis",
+      "Predictive modelling",
+      "Funding outcome prediction",
+      "Data-driven insights",
+      "Prediction result visualization",
+    ],
+    impact: [
+      { value: "Data-driven", label: "Funding analysis" },
+      { value: "Predictive", label: "Business insights" },
+      { value: "Structured", label: "Startup data" },
+      { value: "Accessible", label: "Prediction results" },
+    ],
+  },
+};
 
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: "easeOut" },
+  },
 };
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.28, ease: "easeOut" } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.28, ease: "easeOut" },
+  },
 };
 
-
 interface CaseStudyDetailProps {
+  projectId?: string | null;
   onNavigate: (page: PageRoute) => void;
   onOpenContact: () => void;
 }
 
 export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
+  projectId,
   onNavigate,
   onOpenContact,
 }) => {
   const [activeSection, setActiveSection] = useState("overview");
+  const selectedProject =
+    PORTFOLIO_PROJECTS.find((project) => project.id === projectId) ??
+    PORTFOLIO_PROJECTS[0];
+  const detail =
+    PROJECT_DETAILS[selectedProject.id] ?? PROJECT_DETAILS["capernaum-erp"];
 
   const sidebarLinks = [
     { id: "overview", label: "Overview" },
@@ -65,7 +544,12 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
   };
 
   return (
-    <motion.div id="case-study-page" initial="hidden" animate="visible" className="bg-white min-h-screen">
+    <motion.div
+      id="case-study-page"
+      initial="hidden"
+      animate="visible"
+      className="bg-white min-h-screen"
+    >
       {/* Breadcrumbs & Hero Header */}
       <div className="border-b border-slate-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -101,13 +585,19 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
           </div>
 
           {/* Hero Content with Split Image Right */}
-          <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-8">
+          <motion.div
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-8"
+          >
             <div className="lg:col-span-7">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                Transforming Operations for a Leading Manufacturing Company
+                {detail.title}
               </h1>
               <p className="mt-3 text-lg text-slate-600 font-normal">
-                From manual operations to a connected, data-driven business.
+                {detail.subtitle}
               </p>
 
               {/* Metadata Strip */}
@@ -117,7 +607,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                     Industry
                   </span>
                   <span className="text-sm font-bold text-slate-900 mt-0.5 block">
-                    Manufacturing
+                    {detail.industry}
                   </span>
                 </div>
                 <div>
@@ -125,7 +615,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                     Business Type
                   </span>
                   <span className="text-sm font-bold text-slate-900 mt-0.5 block">
-                    Mid-Market
+                    {detail.businessType}
                   </span>
                 </div>
                 <div>
@@ -133,7 +623,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                     Engagement
                   </span>
                   <span className="text-sm font-bold text-slate-900 mt-0.5 block">
-                    Digital Transformation
+                    {detail.engagement}
                   </span>
                 </div>
                 <div>
@@ -141,7 +631,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                     Timeline
                   </span>
                   <span className="text-sm font-bold text-slate-900 mt-0.5 block">
-                    8 Months
+                    {detail.timeline}
                   </span>
                 </div>
               </div>
@@ -151,8 +641,8 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 h-72 sm:h-80">
                 <img
-                  src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80"
-                  alt="Industrial robotic arm"
+                  src={`${(import.meta as ImportMeta & { env?: { BASE_URL?: string } }).env?.BASE_URL ?? "/"}assets/${PROJECT_IMAGES[selectedProject.id]}`}
+                  alt={detail.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />
@@ -161,7 +651,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
 
                 {/* Badge */}
                 <div className="absolute bottom-3 left-3 bg-slate-900/85 backdrop-blur-xs text-white text-xs px-3 py-1.5 rounded-md border border-slate-700/80 font-medium">
-                  Smart Factory Integration
+                  {detail.heroLabel}
                 </div>
               </div>
             </div>
@@ -218,47 +708,32 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
           {/* Right Content Column */}
           <main className="lg:col-span-9 space-y-16">
             {/* 1. Key Impact Metric Cards (4 Grid) */}
-            <motion.section id="overview" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.08 }} className="scroll-mt-32">
+            <motion.section
+              id="overview"
+              variants={sectionVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.08 }}
+              className="scroll-mt-32"
+            >
               <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2 min-w-0">
                 <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
                 Key Impact Highlights
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-slate-50 border border-slate-200/90 rounded-xl p-5 hover:border-blue-300 transition-colors">
-                  <div className="text-3xl font-black text-blue-600 tracking-tight">
-                    40%
+                {detail.impact.map((item) => (
+                  <div
+                    key={`${item.value}-${item.label}`}
+                    className="bg-slate-50 border border-slate-200/90 rounded-xl p-5 hover:border-blue-300 transition-colors"
+                  >
+                    <div className="text-3xl font-black text-blue-600 tracking-tight">
+                      {item.value}
+                    </div>
+                    <p className="mt-2 text-xs font-medium text-slate-700 uppercase tracking-wider">
+                      {item.label}
+                    </p>
                   </div>
-                  <p className="mt-2 text-xs font-medium text-slate-700 uppercase tracking-wider">
-                    Reduction in manual processing
-                  </p>
-                </div>
-
-                <div className="bg-slate-50 border border-slate-200/90 rounded-xl p-5 hover:border-blue-300 transition-colors">
-                  <div className="text-3xl font-black text-blue-600 tracking-tight">
-                    3x
-                  </div>
-                  <p className="mt-2 text-xs font-medium text-slate-700 uppercase tracking-wider">
-                    Faster reporting and visibility
-                  </p>
-                </div>
-
-                <div className="bg-slate-50 border border-slate-200/90 rounded-xl p-5 hover:border-blue-300 transition-colors">
-                  <div className="text-3xl font-black text-blue-600 tracking-tight">
-                    25%
-                  </div>
-                  <p className="mt-2 text-xs font-medium text-slate-700 uppercase tracking-wider">
-                    Increase in lead conversion
-                  </p>
-                </div>
-
-                <div className="bg-slate-50 border border-slate-200/90 rounded-xl p-5 hover:border-blue-300 transition-colors">
-                  <div className="text-3xl font-black text-blue-600 tracking-tight">
-                    10 hrs/week
-                  </div>
-                  <p className="mt-2 text-xs font-medium text-slate-700 uppercase tracking-wider">
-                    Saved in operational work
-                  </p>
-                </div>
+                ))}
               </div>
             </motion.section>
 
@@ -271,9 +746,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                 The Challenge
               </h2>
               <p className="text-base text-slate-600 leading-relaxed mb-8">
-                The client was growing rapidly, but operations were held back by
-                manual processes, disconnected systems and limited visibility
-                across departments.
+                {detail.challenge}
               </p>
 
               {/* 4-Card Breakdown */}
@@ -337,8 +810,7 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                 Our Approach
               </h2>
               <p className="text-base text-slate-600 leading-relaxed mb-8">
-                We followed a structured transformation framework to identify
-                gaps, design solutions and drive measurable impact.
+                {detail.approach}
               </p>
 
               {/* Linked 6-Step Horizontal Mini-Process Diagram */}
@@ -408,19 +880,12 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                 The Solution
               </h2>
               <p className="text-base text-slate-600 leading-relaxed mb-6">
-                We built an integrated digital ecosystem that connects people,
-                processes and data across the organization.
+                {detail.solution}
               </p>
 
               {/* Checklist with Custom Blue Checkmarks */}
               <div className="space-y-3 mb-10 max-w-2xl">
-                {[
-                  "Centralized operational dashboard",
-                  "Automated workflows and approvals",
-                  "Integrated CRM, Inventory & Production",
-                  "Real-time analytics with Power BI",
-                  "Role-based access and data security",
-                ].map((item) => (
+                {detail.features.map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                     <span className="text-sm font-medium text-slate-800">
@@ -648,32 +1113,19 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="p-6 rounded-xl bg-blue-50/70 border border-blue-200">
-                  <div className="text-3xl font-black text-blue-700">40%</div>
-                  <p className="text-xs font-semibold text-slate-700 mt-2 uppercase tracking-wider">
-                    Reduction in manual processing
-                  </p>
-                </div>
-                <div className="p-6 rounded-xl bg-blue-50/70 border border-blue-200">
-                  <div className="text-3xl font-black text-blue-700">3x</div>
-                  <p className="text-xs font-semibold text-slate-700 mt-2 uppercase tracking-wider">
-                    Faster reporting and visibility
-                  </p>
-                </div>
-                <div className="p-6 rounded-xl bg-blue-50/70 border border-blue-200">
-                  <div className="text-3xl font-black text-blue-700">25%</div>
-                  <p className="text-xs font-semibold text-slate-700 mt-2 uppercase tracking-wider">
-                    Increase in lead conversion
-                  </p>
-                </div>
-                <div className="p-6 rounded-xl bg-blue-50/70 border border-blue-200">
-                  <div className="text-3xl font-black text-blue-700">
-                    10 hrs/week
+                {detail.impact.map((item) => (
+                  <div
+                    key={`${item.value}-${item.label}`}
+                    className="p-6 rounded-xl bg-blue-50/70 border border-blue-200"
+                  >
+                    <div className="text-3xl font-black text-blue-700">
+                      {item.value}
+                    </div>
+                    <p className="text-xs font-semibold text-slate-700 mt-2 uppercase tracking-wider">
+                      {item.label}
+                    </p>
                   </div>
-                  <p className="text-xs font-semibold text-slate-700 mt-2 uppercase tracking-wider">
-                    Saved in operational work
-                  </p>
-                </div>
+                ))}
               </div>
             </section>
 
@@ -749,16 +1201,16 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                 <div className="flex items-center gap-4">
                   <img
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80"
-                    alt="Rajesh Patil"
+                    alt={detail.testimonial?.author ?? "Project Stakeholder"}
                     referrerPolicy="no-referrer"
                     className="w-12 h-12 rounded-full object-cover border-2 border-blue-500"
                   />
                   <div>
                     <h4 className="text-sm font-bold text-white">
-                      Rajesh Patil
+                      {detail.testimonial?.author ?? "Project Stakeholder"}
                     </h4>
                     <p className="text-xs text-slate-400">
-                      Head of Operations, Force Motors
+                      {detail.testimonial?.designation ?? detail.industry}
                     </p>
                   </div>
                 </div>

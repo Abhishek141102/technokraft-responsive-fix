@@ -33,6 +33,7 @@ const PROJECT_IMAGES: Record<string, string> = {
 interface OurWorkPortfolioProps {
   onNavigate: (page: PageRoute) => void;
   onOpenContact: () => void;
+  onSelectProject: (projectId: string) => void;
   selectedGoalFilter?: string;
   selectedIndustryFilter?: string;
 }
@@ -66,6 +67,7 @@ const cardVariants: Variants = {
 export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
   onNavigate,
   onOpenContact,
+  onSelectProject,
   selectedGoalFilter = "All Goals",
   selectedIndustryFilter = "All Industries",
 }) => {
@@ -134,7 +136,7 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
   });
 
   const handleCaseStudyClick = (projectId: string) => {
-    // Primary manufacturing study opens case-study page; others can also route there
+    onSelectProject?.(projectId);
     onNavigate("case-study");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
