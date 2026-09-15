@@ -3,42 +3,37 @@ import { motion, type Variants } from "motion/react";
 
 const TEAM_STRUCTURE = [
   {
-    name: "Business Analysis Team",
+    name: "Omkar Mogal",
     role: "Business Analyst",
-    image:
-      "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=700&fit=crop",
+    image: "/technokraft-responsive-fix/assets/omkar_mogal.jpeg",
+    linkedin: "https://www.linkedin.com/in/omkar-mogal-020678350/",
   },
   {
-    name: "Data Analysis Team",
-    role: "Data Analyst",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=700&fit=crop",
-  },
-  {
-    name: "Creative Design Team",
+    name: "Dipak Mahajan",
     role: "UI/UX Designer",
-    image:
-      "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=600&h=700&fit=crop",
+    image: "/technokraft-responsive-fix/assets/dipak_mahajan.jpeg",
+    linkedin: "https://www.linkedin.com/in/dipak-mahajan-417868229/",
   },
   {
-    name: "Development Team",
-    role: "Software Developers",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=700&fit=crop",
+    name: "Kunal Patil",
+    role: "Full Stack Developer",
+    image: "/technokraft-responsive-fix/assets/kunal_patil.png",
+    linkedin: "https://www.linkedin.com/in/kunal-patil11/",
   },
   {
-    name: "Quality Assurance Team",
-    role: "QA & Testing",
-    image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=700&fit=crop",
+    name: "Sejdeep Kour",
+    role: "Digital Marketing Specialist",
+    image: "/technokraft-responsive-fix/assets/sejdeep_kaur.jpeg",
+    linkedin: "https://www.linkedin.com/in/sejdeep-kour/",
+  },
+  {
+    name: "Sanskruti Sole",
+    role: "Human Resources Manager",
+    image: "/technokraft-responsive-fix/assets/sanskruti_sole.jpeg",
+    linkedin: "https://www.linkedin.com/in/sanskruti-sole-aa6433395/",
   },
 ];
 
-const TEAM_SOCIAL_LINKS = {
-  facebook: "https://www.facebook.com/tts.net.in/",
-  instagram: "https://www.instagram.com/technokraft_services/",
-  linkedin: "https://www.linkedin.com/company/ttsnashik/",
-};
 
 const sectionVariants: Variants = {
   hidden: {
@@ -83,12 +78,13 @@ export const TeamStructure: React.FC = () => {
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-            Our Team Structure
+            Meet Our Department Heads
           </h2>
 
-          <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-slate-500 sm:text-lg">
-            A collaborative team of professionals working together to deliver
-            reliable, innovative, and impactful digital solutions.
+          <p className="mx-auto mt-3 max-w-3xl text-base leading-relaxed text-slate-500 sm:text-lg">
+            Our department heads bring together expertise, collaboration, and
+            strategic direction to ensure excellence across every area of our
+            organization.
           </p>
         </motion.div>
 
@@ -145,43 +141,9 @@ export const TeamStructure: React.FC = () => {
 
                 {/* Social Links */}
                 <div className="mt-4 flex items-center justify-center gap-2">
-                  {/* Facebook */}
-                  <a
-                    href={TEAM_SOCIAL_LINKS.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${member.name} Facebook`}
-                    className="flex h-8 w-8 items-center justify-center rounded-md border border-slate-200 text-sm font-bold text-slate-500 transition-colors hover:border-blue-600 hover:bg-blue-600 hover:text-white"
-                  >
-                    f
-                  </a>
-
-                  {/* Instagram */}
-                  <a
-                    href={TEAM_SOCIAL_LINKS.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${member.name} Instagram`}
-                    className="flex h-8 w-8 items-center justify-center rounded-md border border-slate-200 text-slate-500 transition-colors hover:border-blue-600 hover:bg-blue-600 hover:text-white"
-                  >
-                    <svg
-                      className="h-4 w-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                    </svg>
-                  </a>
-
                   {/* LinkedIn */}
                   <a
-                    href={TEAM_SOCIAL_LINKS.linkedin}
+                    href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${member.name} LinkedIn`}
