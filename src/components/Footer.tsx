@@ -354,7 +354,7 @@ export const Footer: React.FC<FooterProps> = ({
               <div>
                 <p className="text-slate-300 font-semibold mb-1">Address</p>
                 <p className="leading-5">
-                  3rd Floor, Kanchwala Avenue, Above Viju&apos;s Dabeli
+                  3rd Floor, Kanchwala Avenue, Above Viju&apos;s Dabeli,
                   <br />
                   Thatte Nagar Marg, College Road, Nashik, Maharashtra 422005
                 </p>
@@ -371,10 +371,10 @@ export const Footer: React.FC<FooterProps> = ({
               <div>
                 <p className="text-slate-300 font-semibold mb-1">Email</p>
                 <a
-                  href="mailto:technokraftservicesllp@gmail.com"
+                  href="mailto:info@technokraftservices.com"
                   className="hover:text-white transition-colors whitespace-nowrap"
                 >
-                  technokraftservicesllp@gmail.com
+                  info@technokraftservices.com
                 </a>
               </div>
               <div>

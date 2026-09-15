@@ -62,7 +62,7 @@ export const JourneyMilestones: React.FC = () => {
   const item = MILESTONES[currentIndex];
 
   return (
-    <section className="mt-15 overflow-hidden border-b border-slate-200 bg-[#F1F4F8] py-14 sm:py-20">
+    <section className="mt-15 overflow-hidden border-b border-slate-200 bg-[#F1F4F8] py-14 sm:py-15">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

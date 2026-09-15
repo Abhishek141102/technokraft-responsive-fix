@@ -74,9 +74,9 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <h3 className="font-bold text-slate-900">Address</h3>
                   <p className="mt-1 text-sm text-slate-600 leading-6">
-                    3rd Floor, Kanchwala Avenue, Above Viju&apos;s Dabeli
+                    3rd Floor, Kanchwala Avenue, Above Viju&apos;s Dabeli,
                     <br />
-                    Thatte Nagar Marg, College Road
+                    Thatte Nagar Marg, College Road,
                     <br />
                     Nashik, Maharashtra 422005
                   </p>
@@ -105,10 +105,10 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <h3 className="font-bold text-slate-900">Email Us</h3>
                   <a
-                    href="mailto:technokraftservicesllp@gmail.com"
+                    href="mailto:info@technokraftservices.com"
                     className="mt-1 inline-block text-sm text-slate-600 hover:text-blue-600"
                   >
-                    technokraftservicesllp@gmail.com
+                    info@technokraftservices.com
                   </a>
                 </div>
               </div>

@@ -245,7 +245,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onOpenContac
                 <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm">
                   <div className="flex gap-3"><MapPin className="w-5 h-5 text-blue-600 shrink-0" /><div><p className="font-semibold text-slate-900">Office Address</p><p className="mt-1 text-slate-600 leading-6">{service.office.address}</p></div></div>
                   <div className="flex gap-3"><Phone className="w-5 h-5 text-blue-600 shrink-0" /><div><p className="font-semibold text-slate-900">Phone Inquiries</p><a href="tel:+919370174424" className="mt-1 inline-block text-slate-600 hover:text-blue-600">{service.office.phone}</a></div></div>
-                  <div className="flex gap-3"><Mail className="w-5 h-5 text-blue-600 shrink-0" /><div><p className="font-semibold text-slate-900">Email</p><a href="mailto:technokraftservicesllp@gmail.com" className="mt-1 inline-block text-slate-600 hover:text-blue-600">{service.office.email}</a></div></div>
+                  <div className="flex gap-3"><Mail className="w-5 h-5 text-blue-600 shrink-0" /><div><p className="font-semibold text-slate-900">Email</p><a href="mailto:info@technokraftservices.com" className="mt-1 inline-block text-slate-600 hover:text-blue-600">{service.office.email}</a></div></div>
                   <div className="flex gap-3"><Clock3 className="w-5 h-5 text-blue-600 shrink-0" /><div><p className="font-semibold text-slate-900">Working Hours</p><p className="mt-1 text-slate-600">{service.office.hours}</p></div></div>
                 </div>
               </motion.section>

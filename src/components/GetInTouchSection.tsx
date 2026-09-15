@@ -9,9 +9,9 @@ export const GetInTouchSection: React.FC = () => {
       title: "Address",
       content: (
         <p className="mt-1 text-sm text-slate-600">
-          3rd Floor, Kanchwala Avenue, Above Viju&apos;s Dabeli
+          3rd Floor, Kanchwala Avenue, Above Viju&apos;s Dabeli,
           <br />
-          Thatte Nagar Marg, College Road
+          Thatte Nagar Marg, College Road,
           <br />
           Nashik, Maharashtra 422005
         </p>
@@ -34,10 +34,10 @@ export const GetInTouchSection: React.FC = () => {
       title: "Email Us",
       content: (
         <a
-          href="mailto:technokraftservicesllp@gmail.com"
+          href="mailto:info@technokraftservices.com"
           className="mt-1 inline-block text-sm text-slate-600 hover:text-blue-600 transition-colors"
         >
-          technokraftservicesllp@gmail.com
+          info@technokraftservices.com
         </a>
       ),
     },
