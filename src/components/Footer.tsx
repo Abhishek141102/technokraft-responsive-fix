@@ -395,11 +395,17 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="mt-14 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <p>© 2026 TechnoKraft Services LLP. All rights reserved.</p>
           <div className="flex items-center space-x-6">
-            <button className="hover:text-slate-400 transition-colors">
+            <button
+              onClick={() => onNavigate("privacy-policy")}
+              className="hover:text-slate-400 transition-colors cursor-pointer"
+            >
               Privacy Policy
             </button>
-            <button className="hover:text-slate-400 transition-colors">
-              Terms of Use
+            <button
+              onClick={() => onNavigate("terms-&-conditions")}
+              className="hover:text-slate-400 transition-colors cursor-pointer"
+            >
+              Terms & Conditions
             </button>
           </div>
         </div>

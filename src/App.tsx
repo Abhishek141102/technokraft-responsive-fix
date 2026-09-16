@@ -16,6 +16,8 @@ import { ContactSection } from "./components/ContactSection";
 import { GetInTouchSection } from "./components/GetInTouchSection";
 import { ServiceDetail } from "./components/ServiceDetail";
 import { IndustryDetail } from "./components/IndustryDetail";
+import { PrivacyPolicy } from "./components/PrivacyPolicy";
+import { TermsOfUse } from "./components/Terms&Conditions";
 
 export default function App() {
   // GitHub Pages-compatible routing using the URL hash.
@@ -30,6 +32,8 @@ export default function App() {
     if (hash.includes("#/about")) return "about";
     if (hash.includes("#/contact")) return "contact";
     if (hash.includes("#/industries/")) return "industry-detail";
+    if (hash.startsWith("#/privacy-policy")) return "privacy-policy";
+    if (hash.startsWith("#/terms-&-conditions")) return "terms-&-conditions";
 
     return "home";
   };
@@ -222,6 +226,10 @@ export default function App() {
         )}
 
         {currentPage === "contact" && <ContactSection />}
+
+        {currentPage === "privacy-policy" && <PrivacyPolicy />}
+
+        {currentPage === "terms-&-conditions" && <TermsOfUse />}
       </main>
 
       {/* Global Dark Theme Footer */}
