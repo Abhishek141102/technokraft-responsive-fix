@@ -1,4 +1,4 @@
-export type PageRoute = 'home' | 'case-study' | 'our-work' | 'about' | 'contact' | 'service-detail';
+export type PageRoute = 'home' | 'case-study' | 'our-work' | 'about' | 'contact' | 'service-detail' | 'industry-detail';
 
 export interface GoalItem {
   id: string;

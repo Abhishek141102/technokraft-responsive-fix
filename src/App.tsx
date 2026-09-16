@@ -15,6 +15,7 @@ import { AboutSection } from "./components/AboutSection";
 import { ContactSection } from "./components/ContactSection";
 import { GetInTouchSection } from "./components/GetInTouchSection";
 import { ServiceDetail } from "./components/ServiceDetail";
+import { IndustryDetail } from "./components/IndustryDetail";
 
 export default function App() {
   // GitHub Pages-compatible routing using the URL hash.
@@ -24,10 +25,11 @@ export default function App() {
     const hash = window.location.hash.toLowerCase();
 
     if (hash.includes("/services/")) return "service-detail";
-    if (hash.includes("case-study")) return "case-study";
-    if (hash.includes("our-work")) return "our-work";
-    if (hash.includes("about")) return "about";
-    if (hash.includes("contact")) return "contact";
+    if (hash.includes("/case-study/")) return "case-study";
+    if (hash.includes("/our-work/")) return "our-work";
+    if (hash.includes("/about/")) return "about";
+    if (hash.includes("/contact/")) return "contact";
+    if (hash.includes("/industries/")) return "industry-detail";
 
     return "home";
   };
@@ -38,9 +40,18 @@ export default function App() {
     return match ? decodeURIComponent(match[1]) : null;
   };
 
+  const getInitialIndustrySlug = (): string | null => {
+    const hash = window.location.hash.toLowerCase();
+    const match = hash.match(/#\/industries\/([^?]+)/);
+    return match ? decodeURIComponent(match[1]) : null;
+  };
+
   const [currentPage, setCurrentPage] = useState<PageRoute>(getInitialRoute());
   const [selectedServiceSlug, setSelectedServiceSlug] = useState<string | null>(
     getInitialServiceSlug(),
+  );
+  const [selectedIndustrySlug, setSelectedIndustrySlug] = useState<string | null>(
+    getInitialIndustrySlug(),
   );
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [selectedGoalFilter, setSelectedGoalFilter] =
@@ -56,6 +67,7 @@ export default function App() {
     const handlePopState = () => {
       setCurrentPage(getInitialRoute());
       setSelectedServiceSlug(getInitialServiceSlug());
+      setSelectedIndustrySlug(getInitialIndustrySlug());
     };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
@@ -107,10 +119,20 @@ export default function App() {
     scrollToTopInstantly();
   };
 
+  const handleIndustryNavigate = (slug: string) => {
+    setSelectedIndustrySlug(slug);
+    setCurrentPage("industry-detail");
+    const hash = `#/industries/${slug}`;
+    if (window.location.hash !== hash) {
+      window.history.pushState({}, "", hash);
+    }
+    scrollToTopInstantly();
+  }
+
   // Reset scroll after the new page has rendered as well.
   useLayoutEffect(() => {
     scrollToTopInstantly();
-  }, [currentPage, selectedServiceSlug]);
+  }, [currentPage, selectedServiceSlug, selectedIndustrySlug]);
 
   const handleSelectGoal = (goalTitle: string) => {
     setSelectedGoalFilter(goalTitle);
@@ -128,6 +150,7 @@ export default function App() {
         onNavigate={handleNavigate}
         onOpenContact={() => setIsConsultationOpen(true)}
         onServiceNavigate={handleServiceNavigate}
+        onIndustryNavigate={handleIndustryNavigate}
       />
 
       {/* Page Content */}
@@ -157,6 +180,14 @@ export default function App() {
           <ServiceDetail
             key={selectedServiceSlug}
             slug={selectedServiceSlug}
+            onOpenContact={() => setIsConsultationOpen(true)}
+          />
+        )}
+
+        {currentPage === "industry-detail" && selectedIndustrySlug && (
+          <IndustryDetail
+            key={selectedIndustrySlug}
+            slug={selectedIndustrySlug}
             onOpenContact={() => setIsConsultationOpen(true)}
           />
         )}
@@ -193,6 +224,7 @@ export default function App() {
         onNavigate={handleNavigate}
         onServiceNavigate={handleServiceNavigate}
         onOpenContact={() => setIsConsultationOpen(true)}
+        onIndustryNavigate={handleIndustryNavigate}
       />
 
       {/* Interactive Consultation / Let's Talk Modal */}

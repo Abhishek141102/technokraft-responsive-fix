@@ -8,6 +8,7 @@ interface NavbarProps {
   onNavigate: (page: PageRoute) => void;
   onOpenContact: () => void;
   onServiceNavigate: (slug: string) => void;
+  onIndustryNavigate: (slug: string) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -15,6 +16,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onNavigate,
   onOpenContact,
   onServiceNavigate,
+  onIndustryNavigate,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDesktopDropdown, setOpenDesktopDropdown] = useState<string | null>(
@@ -50,12 +52,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   const INDUSTRIES_ITEMS = [
-    "Manufacturing",
-    "Healthcare",
-    "Retail & E-commerce",
-    "Education",
-    "Professional Services",
-    "Startups",
+    { label: "Manufacturing", slug: "manufacturing" },
+    { label: "Healthcare", slug: "healthcare" },
+    { label: "Retail & E-commerce", slug: "retail-ecommerce" },
+    { label: "Education", slug: "education" },
+    { label: "Professional Services", slug: "professional-services" },
+    { label: "Startups", slug: "startups" },
   ];
 
   const navLinks = [
@@ -188,23 +190,41 @@ export const Navbar: React.FC<NavbarProps> = ({
                             : "bg-white border-slate-200"
                         }`}
                       >
-                        {item.dropdown.map((sub) => (
-                          <button
-                            key={sub}
-                            onClick={() => {
-                              setOpenDesktopDropdown(null);
-                              onServiceNavigate(SERVICE_SLUGS[sub]);
-                              setMobileMenuOpen(false);
-                            }}
-                            className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer ${
-                              isDark
-                                ? "text-slate-300 hover:bg-slate-800 hover:text-white"
-                                : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
-                            }`}
-                          >
-                            {sub}
-                          </button>
-                        ))}
+                        {item.dropdown.map((sub) => {
+                          const isIndustry = item.label === "Industries";
+                          const subLabel = isIndustry
+                            ? (sub as { label: string; slug: string }).label
+                            : (sub as string);
+                          const subKey = isIndustry
+                            ? (sub as { label: string; slug: string }).slug
+                            : (sub as string);
+                          return (
+                            <button
+                              key={subKey}
+                              onClick={() => {
+                                setOpenDesktopDropdown(null);
+                                if (isIndustry) {
+                                  onIndustryNavigate(
+                                    (sub as { label: string; slug: string })
+                                      .slug,
+                                  );
+                                } else {
+                                  onServiceNavigate(
+                                    SERVICE_SLUGS[sub as string],
+                                  );
+                                }
+                                setMobileMenuOpen(false);
+                              }}
+                              className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer ${
+                                isDark
+                                  ? "text-slate-300 hover:bg-slate-800 hover:text-white"
+                                  : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                              }`}
+                            >
+                              {subLabel}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   )}
@@ -283,37 +303,107 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {mobileMenuOpen && (
-        <motion.div
-          id="mobile-nav-menu"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className={`lg:hidden px-4 pt-2 pb-6 border-b overflow-hidden ${
-            isDark
-              ? "bg-[#0B0F19] border-slate-800 text-white"
-              : "bg-white border-slate-200 text-slate-900"
-          }`}
-        >
           <motion.div
-            className="flex flex-col space-y-3 pt-2"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  delayChildren: 0.08,
-                  staggerChildren: 0.05,
-                },
-              },
-            }}
+            id="mobile-nav-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`lg:hidden px-4 pt-2 pb-6 border-b overflow-hidden ${
+              isDark
+                ? "bg-[#0B0F19] border-slate-800 text-white"
+                : "bg-white border-slate-200 text-slate-900"
+            }`}
           >
-            {navLinks.map((item) => {
-              if ("dropdown" in item && item.dropdown) {
-                const isOpen = openMobileDropdown === item.label;
+            <motion.div
+              className="flex flex-col space-y-3 pt-2"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    delayChildren: 0.08,
+                    staggerChildren: 0.05,
+                  },
+                },
+              }}
+            >
+              {navLinks.map((item) => {
+                if ("dropdown" in item && item.dropdown) {
+                  const isOpen = openMobileDropdown === item.label;
+                  return (
+                    <motion.div
+                      key={item.label}
+                      variants={{
+                        hidden: { opacity: 0, x: -12 },
+                        visible: {
+                          opacity: 1,
+                          x: 0,
+                          transition: { duration: 0.3, ease: "easeOut" },
+                        },
+                      }}
+                    >
+                      <button
+                        onClick={() =>
+                          setOpenMobileDropdown(isOpen ? null : item.label)
+                        }
+                        className={`w-full flex items-center justify-between text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                          isDark
+                            ? "hover:bg-slate-800 text-slate-200"
+                            : "hover:bg-slate-100 text-slate-800"
+                        }`}
+                      >
+                        {item.label}
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      {isOpen && (
+                        <div className="pl-4 flex flex-col space-y-1 mt-1">
+                          {item.dropdown.map((sub) => {
+                            const isIndustry = item.label === "Industries";
+                            const subLabel = isIndustry
+                              ? (sub as { label: string; slug: string }).label
+                              : (sub as string);
+                            const subKey = isIndustry
+                              ? (sub as { label: string; slug: string }).slug
+                              : (sub as string);
+                            return (
+                              <button
+                                key={subKey}
+                                onClick={() => {
+                                  if (isIndustry) {
+                                    onIndustryNavigate(
+                                      (sub as { label: string; slug: string })
+                                        .slug,
+                                    );
+                                  } else {
+                                    onServiceNavigate(
+                                      SERVICE_SLUGS[sub as string],
+                                    );
+                                  }
+                                  setMobileMenuOpen(false);
+                                  setOpenMobileDropdown(null);
+                                }}
+                                className={`text-left px-3 py-2 rounded-md text-sm transition-colors ${
+                                  isDark
+                                    ? "text-slate-400 hover:bg-slate-800 hover:text-white"
+                                    : "text-slate-600 hover:bg-slate-100"
+                                }`}
+                              >
+                                {subLabel}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </motion.div>
+                  );
+                }
+
                 return (
-                  <motion.div
+                  <motion.button
                     key={item.label}
                     variants={{
                       hidden: { opacity: 0, x: -12 },
@@ -323,84 +413,32 @@ export const Navbar: React.FC<NavbarProps> = ({
                         transition: { duration: 0.3, ease: "easeOut" },
                       },
                     }}
+                    onClick={() => handleLinkClick(item)}
+                    className={`text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                      isDark
+                        ? "hover:bg-slate-800 text-slate-200"
+                        : "hover:bg-slate-100 text-slate-800"
+                    }`}
                   >
-                    <button
-                      onClick={() =>
-                        setOpenMobileDropdown(isOpen ? null : item.label)
-                      }
-                      className={`w-full flex items-center justify-between text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                        isDark
-                          ? "hover:bg-slate-800 text-slate-200"
-                          : "hover:bg-slate-100 text-slate-800"
-                      }`}
-                    >
-                      {item.label}
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
-                      />
-                    </button>
-                    {isOpen && (
-                      <div className="pl-4 flex flex-col space-y-1 mt-1">
-                        {item.dropdown.map((sub) => (
-                          <button
-                            key={sub}
-                            onClick={() => {
-                              onServiceNavigate(SERVICE_SLUGS[sub]);
-                              setMobileMenuOpen(false);
-                              setOpenMobileDropdown(null);
-                            }}
-                            className={`text-left px-3 py-2 rounded-md text-sm transition-colors ${
-                              isDark
-                                ? "text-slate-400 hover:bg-slate-800 hover:text-white"
-                                : "text-slate-600 hover:bg-slate-100"
-                            }`}
-                          >
-                            {sub}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </motion.div>
+                    {item.label}
+                  </motion.button>
                 );
-              }
-
-              return (
+              })}
+              <div className="pt-2">
                 <motion.button
-                  key={item.label}
-                  variants={{
-                    hidden: { opacity: 0, x: -12 },
-                    visible: {
-                      opacity: 1,
-                      x: 0,
-                      transition: { duration: 0.3, ease: "easeOut" },
-                    },
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenContact();
                   }}
-                  onClick={() => handleLinkClick(item)}
-                  className={`text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                    isDark
-                      ? "hover:bg-slate-800 text-slate-200"
-                      : "hover:bg-slate-100 text-slate-800"
-                  }`}
+                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ y: -2 }}
+                  className="w-full py-3 rounded-md bg-blue-600 text-white font-medium text-center text-sm shadow-sm"
                 >
-                  {item.label}
+                  Let&apos;s Talk
                 </motion.button>
-              );
-            })}
-            <div className="pt-2">
-              <motion.button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenContact();
-                }}
-                whileTap={{ scale: 0.97 }}
-                whileHover={{ y: -2 }}
-                className="w-full py-3 rounded-md bg-blue-600 text-white font-medium text-center text-sm shadow-sm"
-              >
-                Let&apos;s Talk
-              </motion.button>
-            </div>
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
         )}
       </AnimatePresence>
     </header>

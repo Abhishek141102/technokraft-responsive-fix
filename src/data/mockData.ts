@@ -309,25 +309,25 @@ export const ROADMAP_PHASES: RoadmapPhase[] = [
     phase: 'Phase 2',
     title: 'Process Automation',
     items: 'Workflow Automation, Integrations',
-    status: 'In-Progress',
+    status: 'Completed',
   },
   {
     phase: 'Phase 3',
     title: 'Business Intelligence',
     items: 'Advanced Dashboards, Analytics',
-    status: 'Next',
+    status: 'Completed',
   },
   {
     phase: 'Phase 4',
     title: 'AI & Predictive Insights',
     items: 'AI Models, Predictions, Smart Alerts',
-    status: 'Future',
+    status: 'Completed',
   },
   {
     phase: 'Phase 5',
     title: 'Scale & Optimize',
     items: 'Cloud Scaling, Advanced Optimizations',
-    status: 'Future',
+    status: 'Completed',
   },
 ];
 

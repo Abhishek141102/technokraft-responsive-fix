@@ -95,7 +95,14 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Connected", label: "Business workflows" },
       { value: "Scalable", label: "ERP architecture" },
     ],
+    testimonial: {
+      quote:
+        "TechnoKraft delivered an exceptional custom ERP & software solution that streamlined our business operations. The team's depth of technical knowledge and dedication to delivering on time exceeded our expectations.",
+      author: "Rahul Sharma",
+      designation: "Managing Director, Capernaum Solutions",
+    },
   },
+
   "focus-coaching-erp": {
     title: "Focus Coaching ERP: Managing Education Operations",
     subtitle:
@@ -128,7 +135,14 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Automated", label: "Fee tracking" },
       { value: "Real-time", label: "Academic visibility" },
     ],
+    testimonial: {
+      quote:
+        "Outstanding web and student portal development! TechnoKraft built a responsive learning and exam analytics platform that scaled effortlessly across our batches. Highly professional team.",
+      author: "Priya Deshmukh",
+      designation: "Academic Director, Focus Coaching Classes",
+    },
   },
+
   "rejos-logistics-crm": {
     title: "Rejos Logistics CRM: Simplifying Freight Operations",
     subtitle:
@@ -161,7 +175,14 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Automated", label: "Billing operations" },
       { value: "Centralized", label: "Driver allocation" },
     ],
+    testimonial: {
+      quote:
+        "Their transport tracking CRM and cloud infrastructure integration was seamless. TechnoKraft automated our transport dispatch workflows with 100% reliability and excellent 24/7 support.",
+      author: "Amit Verma",
+      designation: "Operations Head, Rejos Transport Services",
+    },
   },
+
   "irasa-ecommerce": {
     title: "Irasa E-Commerce: A Luxury Fragrance Experience",
     subtitle:
@@ -194,6 +215,12 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Premium", label: "Brand experience" },
       { value: "Responsive", label: "E-commerce platform" },
     ],
+    testimonial: {
+      quote:
+        "The custom e-commerce web application and UI/UX design crafted by TechnoKraft transformed our customer engagement. Elegant layouts, fast checkouts, and smooth interactions boosted our online sales.",
+      author: "Sneha Kulkarni",
+      designation: "Founder & Brand Head, Irasa Perfumes",
+    },
   },
   "intern-management-system": {
     title: "Intern Management System: Connecting Teams and Interns",
@@ -1194,9 +1221,10 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
               <div className="bg-slate-900 text-white p-8 rounded-2xl border border-slate-800 relative">
                 <Quote className="w-10 h-10 text-blue-500/40 mb-4" />
                 <p className="text-base sm:text-lg text-slate-200 italic leading-relaxed mb-6">
-                  &ldquo;TechnoKraft understood our business deeply and built a
-                  solution that transformed the way we operate. The impact on
-                  efficiency and visibility has been remarkable.&rdquo;
+                  &ldquo;
+                  {detail.testimonial?.quote ??
+                    "TechnoKraft understood our business deeply and built a solution that transformed the way we operate. The impact on efficiency and visibility has been remarkable."}
+                  &rdquo;
                 </p>
                 <div className="flex items-center gap-4">
                   <img

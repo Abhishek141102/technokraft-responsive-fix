@@ -5,12 +5,14 @@ interface FooterProps {
   onNavigate: (page: PageRoute) => void;
   onServiceNavigate: (slug: string) => void;
   onOpenContact: () => void;
+  onIndustryNavigate?: (slug: string) => void; // Optional prop for industry navigation
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onNavigate,
   onServiceNavigate,
   onOpenContact,
+  onIndustryNavigate,
 }) => {
   return (
     <footer
@@ -198,7 +200,7 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-2.5 text-xs text-slate-400">
               <li>
                 <button
-                  onClick={() => onNavigate("case-study")}
+                  onClick={() => onIndustryNavigate?.("manufacturing")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Manufacturing
@@ -206,7 +208,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate("our-work")}
+                  onClick={() => onIndustryNavigate?.("healthcare")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Healthcare
@@ -214,7 +216,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate("our-work")}
+                  onClick={() => onIndustryNavigate?.("retail-ecommerce")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Retail & E-commerce
@@ -222,7 +224,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate("our-work")}
+                  onClick={() => onIndustryNavigate?.("education")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Education
@@ -230,7 +232,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate("our-work")}
+                  onClick={() => onIndustryNavigate?.("professional-services")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Professional Services
@@ -238,7 +240,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate("home")}
+                  onClick={() => onIndustryNavigate?.("startups")}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Startups
