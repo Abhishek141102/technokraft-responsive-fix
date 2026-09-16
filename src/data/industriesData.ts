@@ -41,7 +41,6 @@ export const industriesData: IndustryData[] = [
     slug: "manufacturing",
     navLabel: "Manufacturing",
     title: "Manufacturing ERP & Industrial Automation Software in Nashik",
-    eyebrow: "Industry Solutions",
     lead: "TechnoKraft Services LLP builds production-floor ERP systems, inventory control platforms, and quality management software for manufacturers across Nashik's industrial belt. From raw-material procurement to dispatch, we digitise every stage of your production cycle with software engineered around your actual shop-floor workflows.",
     introTitle: "Software Built Around Your Production Reality",
     intro:
@@ -148,7 +147,6 @@ export const industriesData: IndustryData[] = [
     slug: "healthcare",
     navLabel: "Healthcare",
     title: "Healthcare Software & Hospital Management Systems in Nashik",
-    eyebrow: "Industry Solutions",
     lead: "TechnoKraft Services LLP develops patient management platforms, clinical assessment systems, and healthcare training software for hospitals, diagnostic centres, and medical education institutes. We engineer systems that respect patient-data sensitivity while removing the administrative load from clinical staff.",
     introTitle: "Clinical Workflows Deserve Purpose-Built Software",
     intro:
@@ -250,7 +248,6 @@ export const industriesData: IndustryData[] = [
     slug: "retail-ecommerce",
     navLabel: "Retail & E-commerce",
     title: "E-Commerce Development & Retail POS Software in Nashik",
-    eyebrow: "Industry Solutions",
     lead: "TechnoKraft Services LLP builds custom e-commerce platforms, retail POS systems, and omnichannel inventory software for brands selling online, offline, or both. We engineer storefronts that convert and back-office systems that keep stock, pricing, and orders synchronised across every channel.",
     introTitle: "One Inventory, Every Sales Channel",
     intro:
@@ -352,7 +349,6 @@ export const industriesData: IndustryData[] = [
     slug: "education",
     navLabel: "Education",
     title: "Education ERP & Coaching Class Management Software in Nashik",
-    eyebrow: "Industry Solutions",
     lead: "TechnoKraft Services LLP builds student management ERPs, learning platforms, and examination systems for coaching classes, colleges, and training institutes. Our education software is already tracking thousands of fee installments, attendance records, and exam scorecards in live production.",
     introTitle: "Run Admissions to Results on One System",
     intro:
@@ -464,7 +460,6 @@ export const industriesData: IndustryData[] = [
     slug: "professional-services",
     navLabel: "Professional Services",
     title: "CRM & Practice Management Software for Professional Services",
-    eyebrow: "Industry Solutions",
     lead: "TechnoKraft Services LLP builds client management platforms, project tracking systems, and billing automation for consultancies, agencies, legal and accounting practices, and service firms. We replace scattered spreadsheets with systems that show utilisation, receivables, and delivery status in one place.",
     introTitle: "Your Billable Hours Deserve Better Tracking",
     intro:
@@ -566,7 +561,6 @@ export const industriesData: IndustryData[] = [
     slug: "startups",
     navLabel: "Startups",
     title: "MVP Development & Startup Product Engineering in Nashik",
-    eyebrow: "Industry Solutions",
     lead: "TechnoKraft Services LLP works as an engineering partner for founders building their first product. We take an idea to a working, launchable MVP with an architecture that will not need rewriting the moment traction arrives — and we stay on as the technical team through the scaling that follows.",
     introTitle: "Ship Fast Without Building Technical Debt",
     intro:
