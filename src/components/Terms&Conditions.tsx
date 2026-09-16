@@ -37,7 +37,7 @@ export const TermsOfUse: React.FC = () => {
             className="text-center sm:text-left"
           >
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-              Terms of Use
+              Terms &amp; Conditions
             </h1>
             <p className="mt-4 text-sm text-slate-400">
               Last updated: December 26, 2025
