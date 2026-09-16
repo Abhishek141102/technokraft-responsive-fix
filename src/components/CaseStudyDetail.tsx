@@ -76,7 +76,7 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     overview:
       "Capernaum ERP brings core business operations into one connected platform, helping teams manage operational activities, coordinate accounts and maintain visibility into business performance.",
     challenge:
-      "The business needed a centralized system to manage growing operational requirements, reduce disconnected workflows and improve visibility across teams.",
+      "Capernaum Solutions required a centralized corporate ERP to unify strategic account management, multi-department approval flows, resource tracking, and live executive revenue projections. Disconnected department spreadsheets were causing communication silos and delayed milestone sign-offs.",
     approach:
       "We studied existing operational workflows, identified repetitive tasks and designed a centralized ERP architecture with role-based access, connected modules and structured reporting.",
     solution:
@@ -116,7 +116,7 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     overview:
       "Focus Coaching ERP helps coaching institute teams manage students, batches, fees, attendance and examination information from one platform, supporting 10+ course streams.",
     challenge:
-      "The institute required a centralized system to manage student records, fee collections, batch operations, attendance and exam performance without scattered manual records.",
+      "Managing dozens of educational batches across 10th SSC, 11th/12th Science (PCM, PCB), CET, and NEET required complex manual tracking of student attendance, installment fee reminders, faculty lecture schedules, and test result analytics. Focus Coaching Classes needed a modern, centralized student management portal to streamline administrative operations.",
     approach:
       "We structured the platform around academic and administrative workflows, creating modules for student management, fees, batches, attendance and analytics.",
     solution:
@@ -196,7 +196,7 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     overview:
       "Irasa is a luxury fragrance e-commerce experience that helps customers explore scents, customize perfumes and complete purchases through a refined online shopping journey.",
     challenge:
-      "The brand needed an engaging digital storefront that communicated the luxury nature of its products while making fragrance discovery and customization simple.",
+      "Irasa Perfumes required a bespoke luxury e-commerce web platform that stood apart from generic Shopify templates. The client needed an interactive fragrance customizer where users could blend scent notes, a dynamic scent discovery quiz, frictionless checkout with UPI/Cards, and lightning-fast page load speeds on mobile.",
     approach:
       "We focused on product presentation, scent discovery, custom perfume configuration and a streamlined checkout experience.",
     solution:

@@ -160,7 +160,7 @@ export const PORTFOLIO_PROJECTS: ProjectCard[] = [
     title: "Capernaum Solutions ERP Portal",
     subtitle:
       "Custom enterprise ERP and operational growth platform architected for strategic account orchestration and revenue milestones.",
-    industry: "Capernaum Solutions",
+    industry: "Capernaum Solutions Pvt. Ltd.",
     goal: "Automate",
     service: "Custom ERP Development",
     metric1: { value: "Live", label: "In production" },

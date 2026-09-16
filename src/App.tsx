@@ -24,12 +24,12 @@ export default function App() {
   const getInitialRoute = (): PageRoute => {
     const hash = window.location.hash.toLowerCase();
 
-    if (hash.includes("/services/")) return "service-detail";
-    if (hash.includes("/case-study/")) return "case-study";
-    if (hash.includes("/our-work/")) return "our-work";
-    if (hash.includes("/about/")) return "about";
-    if (hash.includes("/contact/")) return "contact";
-    if (hash.includes("/industries/")) return "industry-detail";
+    if (hash.includes("#/services/")) return "service-detail";
+    if (hash.includes("#/case-study")) return "case-study";
+    if (hash.includes("#/our-work")) return "our-work";
+    if (hash.includes("#/about")) return "about";
+    if (hash.includes("#/contact")) return "contact";
+    if (hash.includes("#/industries/")) return "industry-detail";
 
     return "home";
   };
