@@ -112,11 +112,11 @@ export const TeamStructure: React.FC = () => {
               className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg"
             >
               {/* Top: Image */}
-              <div className="relative h-64 overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800">
+              <div className="relative h-64 overflow-hidden bg-slate-100 flex items-center justify-center">
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  className="h-full w-full object-cover object-top"
                 />
 
                 {/* Subtle Overlay */}

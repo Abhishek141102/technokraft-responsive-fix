@@ -64,22 +64,22 @@ const LEADERSHIP_TEAM = [
   {
     name: "Rahul Makasare",
     role: "Founder & Director",
-    image: "/images/leadership-1.jpg",
+    image: "/technokraft-responsive-fix/assets/rahulmakasare.jpg",
   },
   {
     name: "Arvind Thevar",
     role: "Founder & Director",
-    image: "/images/leadership-2.jpg",
+    image: "/technokraft-responsive-fix/assets/arvind_sir.jpg",
   },
   {
     name: "Sonali Thevar",
     role: "Director",
-    image: "/images/leadership-3.jpg",
+    image: "/technokraft-responsive-fix/assets/sonalithevar.jpg",
   },
   {
     name: "Siddhant Dadel",
     role: "Director",
-    image: "/images/leadership-4.jpg",
+    image: "/technokraft-responsive-fix/assets/siddhant-dadel-3.jpeg",
   },
 ];
 
@@ -192,11 +192,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 transition={{ duration: 0.18, ease: "easeOut" }}
                 className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow bg-white"
               >
-                <div className="relative h-64 bg-slate-100">
+                <div className="relative bg-slate-100">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover"
+                    className="block w-full h-auto object-contain"
                   />
                 </div>
 
