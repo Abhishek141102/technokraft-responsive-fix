@@ -50,9 +50,9 @@ export default function App() {
   const [selectedServiceSlug, setSelectedServiceSlug] = useState<string | null>(
     getInitialServiceSlug(),
   );
-  const [selectedIndustrySlug, setSelectedIndustrySlug] = useState<string | null>(
-    getInitialIndustrySlug(),
-  );
+  const [selectedIndustrySlug, setSelectedIndustrySlug] = useState<
+    string | null
+  >(getInitialIndustrySlug());
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [selectedGoalFilter, setSelectedGoalFilter] =
     useState<string>("All Goals");
@@ -127,7 +127,7 @@ export default function App() {
       window.history.pushState({}, "", hash);
     }
     scrollToTopInstantly();
-  }
+  };
 
   // Reset scroll after the new page has rendered as well.
   useLayoutEffect(() => {
@@ -158,7 +158,13 @@ export default function App() {
         {currentPage === "home" && (
           <>
             <HeroSection
-              onNavigate={handleNavigate}
+              onNavigate={(page) => {
+                if (page === "our-work") {
+                  setSelectedGoalFilter("All Goals");
+                  setSelectedIndustryFilter("All Industries");
+                }
+                handleNavigate(page);
+              }}
               onOpenContact={() => setIsConsultationOpen(true)}
             />
             <SocialProofLogos />
@@ -169,8 +175,7 @@ export default function App() {
             <ProcessFramework />
             <MetricsBar />
             <IndustriesGallery
-              onNavigate={handleNavigate}
-              onSelectIndustry={handleSelectIndustry}
+              onIndustryNavigate={handleIndustryNavigate}
             />
             <GetInTouchSection />
           </>

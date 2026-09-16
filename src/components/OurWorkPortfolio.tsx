@@ -350,48 +350,6 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
           </div>
         )}
 
-        {/* Center Text Link: View More Case Studies */}
-        <div className="text-center mt-12">
-          <button
-            id="view-more-case-studies-btn"
-            onClick={() => setShowMore(!showMore)}
-            className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 hover:underline cursor-pointer"
-          >
-            <span>
-              {showMore
-                ? "Show Fewer Case Studies ↑"
-                : "View More Case Studies →"}
-            </span>
-          </button>
-        </div>
-
-        {/* Expanded additional studies if toggled */}
-        {showMore && (
-          <div className="mt-8 p-6 bg-slate-50 border border-slate-200 rounded-2xl grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 bg-white rounded-xl border border-slate-200">
-              <span className="text-xs font-bold text-blue-600 uppercase">
-                Fintech
-              </span>
-              <h4 className="font-bold text-slate-900 mt-1">
-                Autonomous Fraud Detection for NBFC
-              </h4>
-              <p className="text-xs text-slate-500 mt-1">
-                99.4% precision in detecting transaction anomalies.
-              </p>
-            </div>
-            <div className="p-4 bg-white rounded-xl border border-slate-200">
-              <span className="text-xs font-bold text-blue-600 uppercase">
-                Energy
-              </span>
-              <h4 className="font-bold text-slate-900 mt-1">
-                Smart Grid Telemetry for Solar Utilities
-              </h4>
-              <p className="text-xs text-slate-500 mt-1">
-                22% reduction in unmetered power losses across 14 sites.
-              </p>
-            </div>
-          </div>
-        )}
       </motion.div>
 
       {/* Testimonials Section (Dark Navy Background) */}

@@ -1,23 +1,27 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
 import { INDUSTRIES_DATA } from "../data/mockData";
-import { PageRoute } from "../types";
 
 interface IndustriesGalleryProps {
-  onNavigate: (page: PageRoute) => void;
-  onSelectIndustry?: (industry: string) => void;
+  onIndustryNavigate: (slug: string) => void;
 }
 
+// mockData industry ids don't all match industriesData.ts slugs 1:1 (e.g. "retail" vs "retail-ecommerce")
+const INDUSTRY_SLUG_MAP: Record<string, string> = {
+  manufacturing: "manufacturing",
+  healthcare: "healthcare",
+  retail: "retail-ecommerce",
+  education: "education",
+  "professional-services": "professional-services",
+  startups: "startups",
+};
+
 export const IndustriesGallery: React.FC<IndustriesGalleryProps> = ({
-  onNavigate,
-  onSelectIndustry,
+  onIndustryNavigate,
 }) => {
-  const handleIndustryClick = (industryName: string) => {
-    if (onSelectIndustry) {
-      onSelectIndustry(industryName);
-    }
-    onNavigate("our-work");
+  const handleIndustryClick = (industryId: string) => {
+    const slug = INDUSTRY_SLUG_MAP[industryId] ?? industryId;
+    onIndustryNavigate(slug);
   };
 
   return (
@@ -37,15 +41,6 @@ export const IndustriesGallery: React.FC<IndustriesGalleryProps> = ({
           <p className="mt-3 text-base sm:text-lg leading-relaxed text-slate-600">
             We understand your industry. We build solutions that fit.
           </p>
-
-          <button
-            id="view-all-industries-link"
-            onClick={() => onNavigate("our-work")}
-            className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 cursor-pointer group"
-          >
-            <span>View All Industries</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
         </motion.div>
 
         <motion.div
@@ -64,7 +59,7 @@ export const IndustriesGallery: React.FC<IndustriesGalleryProps> = ({
             <motion.div
               key={ind.id}
               id={`industry-card-${ind.id}`}
-              onClick={() => handleIndustryClick(ind.name)}
+              onClick={() => handleIndustryClick(ind.id)}
               variants={{
                 hidden: { opacity: 0, y: 30, scale: 0.96 },
                 visible: {
