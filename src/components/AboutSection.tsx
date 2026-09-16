@@ -171,7 +171,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           className="mt-16"
         >
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 text-center">
-            Our Founders & Directors
+            Meet Our Expert Leaders & Technical Directors
           </h2>
 
           <p className="mx-auto mt-3 max-w-3xl text-center text-base leading-relaxed text-slate-500 sm:text-lg">

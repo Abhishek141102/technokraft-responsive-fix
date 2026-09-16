@@ -76,7 +76,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
     { label: "Our Work", page: "our-work" as PageRoute },
     { label: "How We Work", page: "home" as PageRoute, hash: "#framework" },
-    { label: "Insights", page: "our-work" as PageRoute },
+    { label: "Insights", page: "home" as PageRoute },
     { label: "About", page: "about" as PageRoute },
     { label: "Contact Us", page: "contact" as PageRoute },
   ];

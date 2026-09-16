@@ -364,7 +364,7 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              What Our Clients Say
+              What Our Valued Clients Say About TechnoKraft
             </h2>
             <p className="mt-3 text-base text-slate-400">
               Partnerships built on trust. Results that speak.
