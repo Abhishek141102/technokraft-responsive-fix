@@ -349,7 +349,6 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
             ))}
           </div>
         )}
-
       </motion.div>
 
       {/* Testimonials Section (Dark Navy Background) */}
@@ -395,12 +394,13 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
                 </div>
 
                 <div className="mt-8 flex items-center gap-4 pt-4 border-t border-slate-800/80">
-                  <img
-                    src={item.avatarUrl}
-                    alt={item.author}
-                    referrerPolicy="no-referrer"
-                    className="w-12 h-12 rounded-full object-cover border-2 border-blue-500"
-                  />
+                  <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm border-2 border-blue-500">
+                    {item.author
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .toUpperCase()}
+                  </div>
                   <div>
                     <h4 className="text-sm font-bold text-white">
                       {item.author}

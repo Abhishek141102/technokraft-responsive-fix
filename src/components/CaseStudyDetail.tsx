@@ -254,6 +254,11 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Tracked", label: "Attendance and tasks" },
       { value: "Improved", label: "Operational visibility" },
     ],
+    testimonial: {
+      quote: "The Intern Management System has streamlined our operations and improved visibility into intern performance.",
+      author: "Rahul Makasare",
+      designation: "Founder & Director, TechnoKraft Services",
+    }
   },
   "crm-training-management": {
     title: "CRM Training Management Platform",
@@ -287,6 +292,11 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Centralized", label: "Fee information" },
       { value: "Structured", label: "Enquiry follow-ups" },
     ],
+    testimonial: {
+      quote: "The CRM Training Management Platform has transformed how we manage student journeys and improved our operational efficiency.",
+      author: "Arvind Thevar",
+      designation: "Founder & Director, TechnoKraft Services",
+    }
   },
   "powerbi-courses-platform": {
     title: "Power BI Courses Platform",
@@ -320,6 +330,11 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Tracked", label: "Learner progress" },
       { value: "Centralized", label: "Course materials" },
     ],
+    testimonial: {
+      quote: "The Power BI Courses Platform has revolutionized our training approach and provided valuable insights into learner engagement.",
+      author: "Sonali Thevar",
+      designation: "Director, TechnoKraft Services",
+    }
   },
   "ims-mobile-app": {
     title: "IMS Mobile App",
@@ -352,6 +367,11 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Quick", label: "Attendance actions" },
       { value: "Timely", label: "Operational alerts" },
     ],
+    testimonial: {
+      quote: "The Intern Management System has streamlined our operations and improved visibility into intern performance.",
+      author: "Siddhant Dadel",
+      designation: "Director, TechnoKraft Services",
+    },
   },
   "crm-mobile-app": {
     title: "CRM Mobile App",
@@ -385,6 +405,11 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Connected", label: "Sales workflows" },
       { value: "Clear", label: "Fee visibility" },
     ],
+    testimonial: {
+      quote: "The CRM Mobile App has enhanced our mobile accessibility and improved our sales team's efficiency.",
+      author: "Siddhant Dadel",
+      designation: "Director, TechnoKraft Services",
+    }
   },
   "medical-coding-assessment": {
     title: "Medical Coding Assessment Platform",
@@ -417,6 +442,11 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Centralized", label: "Assessment records" },
       { value: "Trackable", label: "Learner performance" },
     ],
+    testimonial: {
+      quote: "The Medical Coding Assessment Platform has streamlined our evaluation process and provided valuable insights into learner performance.",
+      author: "Rahul Makasare",
+      designation: "Founder & Director, TechnoKraft Services",
+    }
   },
   "training-assessment-platform": {
     title: "Training Assessment Platform",
@@ -449,6 +479,11 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Trackable", label: "Learner results" },
       { value: "Efficient", label: "Evaluation workflow" },
     ],
+    testimonial: {
+      quote: "The Training Assessment Platform has transformed our approach to evaluating learner performance and provided actionable insights.",
+      author: "Rahul Makasare",
+      designation: "Founder & Director, TechnoKraft Services",
+    }
   },
   "amazon-reviews-ai": {
     title: "Amazon Reviews AI Analytics",
@@ -481,6 +516,11 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Actionable", label: "Product insights" },
       { value: "Scalable", label: "Review processing" },
     ],
+    testimonial: {
+      quote: "The Amazon Reviews AI Analytics solution has provided us with valuable insights into customer sentiment and product performance.",
+      author: "Arvind Thevar",
+      designation: "Founder & Director, TechnoKraft Services",
+    },
   },
   "startup-funding-predictor": {
     title: "Startup Funding Predictor",
@@ -513,6 +553,11 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { value: "Structured", label: "Startup data" },
       { value: "Accessible", label: "Prediction results" },
     ],
+    testimonial: {
+      quote: "The Startup Funding Predictor has given us a competitive edge in understanding funding dynamics.",
+      author: "Arvind Thevar",
+      designation: "Founder & Director, TechnoKraft Services",
+    },
   },
 };
 
@@ -1227,12 +1272,13 @@ export const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                   &rdquo;
                 </p>
                 <div className="flex items-center gap-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80"
-                    alt={detail.testimonial?.author ?? "Project Stakeholder"}
-                    referrerPolicy="no-referrer"
-                    className="w-12 h-12 rounded-full object-cover border-2 border-blue-500"
-                  />
+                  <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm border-2 border-blue-500">
+                    {detail.testimonial?.author
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .toUpperCase()}
+                  </div>
                   <div>
                     <h4 className="text-sm font-bold text-white">
                       {detail.testimonial?.author ?? "Project Stakeholder"}

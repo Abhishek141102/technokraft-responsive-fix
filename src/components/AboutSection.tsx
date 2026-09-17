@@ -65,29 +65,36 @@ const LEADERSHIP_TEAM = [
     name: "Rahul Makasare",
     role: "Founder & Director",
     image: "/technokraft-responsive-fix/assets/rahulmakasare.jpg",
+    facebook: "https://www.facebook.com/r5star",
+    instagram: "https://www.instagram.com/_ra_._one_",
+    linkedin: "https://www.linkedin.com/in/rahulmakasare",
   },
   {
     name: "Arvind Thevar",
     role: "Founder & Director",
     image: "/technokraft-responsive-fix/assets/arvind_sir.jpg",
+    facebook: "https://www.facebook.com/arvind.thevar.90",
+    instagram: "https://www.instagram.com/arvindthevar/",
+    linkedin: "https://www.linkedin.com/in/arvind-thevar-9a87719a/",
   },
   {
     name: "Sonali Thevar",
     role: "Director",
     image: "/technokraft-responsive-fix/assets/sonalithevar.jpg",
+    facebook: "https://www.facebook.com/sonali.bhatt.9210",
+    instagram: "https://www.instagram.com/bhattsonali",
+    linkedin: "https://www.linkedin.com/in/sonalisharma4",
   },
   {
     name: "Siddhant Dadel",
     role: "Director",
     image: "/technokraft-responsive-fix/assets/siddhant-dadel-3.jpeg",
+    facebook: "https://www.facebook.com/share/15y3VQczuH/",
+    instagram: "https://instagram.com/siddhant_dadel",
+    linkedin:
+      "https://www.linkedin.com/in/siddhantdadel?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
 ];
-
-const TEAM_SOCIAL_LINKS = {
-  facebook: "https://www.facebook.com/tts.net.in/",
-  instagram: "https://www.instagram.com/technokraft_services/",
-  linkedin: "https://www.linkedin.com/company/ttsnashik/",
-};
 
 export const AboutSection: React.FC<AboutSectionProps> = ({
   onOpenContact,
@@ -214,7 +221,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
                   <div className="mt-4 flex items-center justify-center gap-2">
                     <a
-                      href={TEAM_SOCIAL_LINKS.facebook}
+                      href={member.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Facebook"
@@ -224,7 +231,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                     </a>
 
                     <a
-                      href={TEAM_SOCIAL_LINKS.instagram}
+                      href={member.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Instagram"
@@ -253,7 +260,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                     </a>
 
                     <a
-                      href={TEAM_SOCIAL_LINKS.linkedin}
+                      href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="LinkedIn"
