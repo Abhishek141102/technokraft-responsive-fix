@@ -71,11 +71,15 @@ export const OurWorkPortfolio: React.FC<OurWorkPortfolioProps> = ({
   selectedGoalFilter = "All Goals",
   selectedIndustryFilter = "All Industries",
 }) => {
-  const [goalFilter, setGoalFilter] = useState<string>(selectedGoalFilter);
-  const [industryFilter, setIndustryFilter] = useState<string>(
-    selectedIndustryFilter,
-  );
-  const [serviceFilter, setServiceFilter] = useState<string>("All Services");
+  const [goalFilter, setGoalFilter] = useState<string>(
+  selectedGoalFilter || "All Goals"
+);
+
+const [industryFilter, setIndustryFilter] = useState<string>(
+  selectedIndustryFilter || "All Industries"
+);
+
+const [serviceFilter, setServiceFilter] = useState<string>("All Services");
   const [showMore, setShowMore] = useState(false);
 
   const testimonialScrollRef = useRef<HTMLDivElement>(null);
