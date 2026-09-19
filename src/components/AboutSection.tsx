@@ -62,20 +62,20 @@ const VALUES = [
 
 const LEADERSHIP_TEAM = [
   {
-    name: "Rahul Makasare",
-    role: "Founder & Director",
-    image: "/technokraft-responsive-fix/assets/rahulmakasare.jpg",
-    facebook: "https://www.facebook.com/r5star",
-    instagram: "https://www.instagram.com/_ra_._one_",
-    linkedin: "https://www.linkedin.com/in/rahulmakasare",
-  },
-  {
     name: "Arvind Thevar",
     role: "Founder & Director",
     image: "/technokraft-responsive-fix/assets/arvind_sir.jpg",
     facebook: "https://www.facebook.com/arvind.thevar.90",
     instagram: "https://www.instagram.com/arvindthevar/",
     linkedin: "https://www.linkedin.com/in/arvind-thevar-9a87719a/",
+  },
+  {
+    name: "Rahul Makasare",
+    role: "Founder & Director",
+    image: "/technokraft-responsive-fix/assets/rahulmakasare.jpg",
+    facebook: "https://www.facebook.com/r5star",
+    instagram: "https://www.instagram.com/_ra_._one_",
+    linkedin: "https://www.linkedin.com/in/rahulmakasare",
   },
   {
     name: "Sonali Thevar",

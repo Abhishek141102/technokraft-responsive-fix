@@ -76,25 +76,37 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
     { label: "Our Work", page: "our-work" as PageRoute },
     { label: "How We Work", page: "home" as PageRoute, hash: "#framework" },
-    { label: "Insights", page: "home" as PageRoute },
     { label: "About", page: "about" as PageRoute },
     { label: "Contact Us", page: "contact" as PageRoute },
   ];
 
   const handleLinkClick = (item: {
-    label: string;
-    page: PageRoute;
-    hash?: string;
-  }) => {
-    setMobileMenuOpen(false);
-    onNavigate(item.page);
-    if (item.hash && item.page === currentPage) {
+  label: string;
+  page: PageRoute;
+  hash?: string;
+}) => {
+  setMobileMenuOpen(false);
+  setOpenMobileDropdown(null);
+
+  // Navigate to the page first
+  onNavigate(item.page);
+
+  // Scroll to section after home page is rendered
+  if (item.hash) {
+    setTimeout(() => {
+      if (!item.hash) return;
+
       const el = document.querySelector(item.hash);
+
       if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
+        el.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       }
-    }
-  };
+    }, 150);
+  }
+};
 
   return (
     <header

@@ -98,8 +98,8 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     testimonial: {
       quote:
         "TechnoKraft delivered an exceptional custom ERP & software solution that streamlined our business operations. The team's depth of technical knowledge and dedication to delivering on time exceeded our expectations.",
-      author: "Rahul Sharma",
-      designation: "Managing Director, Capernaum Solutions",
+      author: "Jobin Joy",
+      designation: "Founder & CEO, Capernaum Solutions",
     },
   },
 
@@ -138,7 +138,7 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     testimonial: {
       quote:
         "Outstanding web and student portal development! TechnoKraft built a responsive learning and exam analytics platform that scaled effortlessly across our batches. Highly professional team.",
-      author: "Priya Deshmukh",
+      author: "Bhupin Dutta",
       designation: "Academic Director, Focus Coaching Classes",
     },
   },
@@ -218,7 +218,7 @@ const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     testimonial: {
       quote:
         "The custom e-commerce web application and UI/UX design crafted by TechnoKraft transformed our customer engagement. Elegant layouts, fast checkouts, and smooth interactions boosted our online sales.",
-      author: "Sneha Kulkarni",
+      author: "Rakesh Shewale",
       designation: "Founder & Brand Head, Irasa Perfumes",
     },
   },

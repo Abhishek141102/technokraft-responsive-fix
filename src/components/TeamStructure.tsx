@@ -29,7 +29,7 @@ const TEAM_STRUCTURE = [
   {
     name: "Sanskruti Sole",
     role: "Human Resources Manager",
-    image: "/technokraft-responsive-fix/assets/sanskruti_sole.jpeg",
+    image: "/technokraft-responsive-fix/assets/sanskruti_sole.PNG",
     linkedin: "https://www.linkedin.com/in/sanskruti-sole-aa6433395/",
   },
 ];

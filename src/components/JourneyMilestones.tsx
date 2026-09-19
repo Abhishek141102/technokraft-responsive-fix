@@ -10,7 +10,7 @@ const MILESTONES = [
       'Established in Nashik with a dedicated focus on bespoke web and software development.',
     color: 'bg-cyan-400',
     image:
-      'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop',
+      '/technokraft-responsive-fix/assets/tts_llp_logo.png',
   },
   {
     year: '2018',
@@ -28,7 +28,7 @@ const MILESTONES = [
       'Integrated automated AWS/Azure DevOps, microservices architectures, and AI solutions.',
     color: 'bg-blue-600',
     image:
-      'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=300&h=300&fit=crop',
   },
   {
     year: '2026',
@@ -123,7 +123,7 @@ export const JourneyMilestones: React.FC = () => {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                   />
                 </motion.div>
 

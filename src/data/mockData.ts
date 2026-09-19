@@ -104,7 +104,7 @@ export const FRAMEWORK_STEPS: FrameworkStep[] = [
 export const STATS_METRICS: MetricItem[] = [
   { value: "12+", label: "Years of Excellence" },
   { value: "50+", label: "Projects Delivered" },
-  { value: "150+", label: "Happy Clients" },
+  { value: "80+", label: "Happy Clients" },
   { value: "24/7", label: "Dedicated Support" },
 ];
 
@@ -363,8 +363,8 @@ export const TESTIMONIALS: TestimonialItem[] = [
     id: "1",
     quote:
       "TechnoKraft delivered an exceptional custom ERP & software solution that streamlined our business operations. The team's depth of technical knowledge and dedication to delivering on time exceeded our expectations.",
-    author: "Rahul Sharma",
-    role: "Managing Director",
+    author: "Jobin Joy",
+    role: "Founder & CEO",
     company: "Capernaum Solutions",
     avatarUrl:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80",
@@ -373,7 +373,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
     id: "2",
     quote:
       "The custom e-commerce web application and UI/UX design crafted by TechnoKraft transformed our customer engagement. Elegant layouts, fast checkouts, and smooth interactions boosted our online sales.",
-    author: "Sneha Kulkarni",
+    author: "Rakesh Shewale",
     role: "Founder & Brand Head",
     company: "Irasa Perfumes",
     avatarUrl:
