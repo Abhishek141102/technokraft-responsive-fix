@@ -31,7 +31,7 @@ export const Assessment: React.FC<AssessmentProps> = ({ onNavigate }) => {
               transition={{ duration: 0.5 }}
             >
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-sm font-medium">
-                <Brain className="w-4 h-4" />
+                
                 TechnoKraft Assessment
               </span>
 
