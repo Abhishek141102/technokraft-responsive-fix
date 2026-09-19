@@ -64,7 +64,7 @@ const LEADERSHIP_TEAM = [
   {
     name: "Arvind Thevar",
     role: "Founder & Director",
-    image: "/technokraft-responsive-fix/assets/arvind_sir.jpg",
+    image: "/technokraft-responsive-fix/assets/arvind_sir.jpeg",
     facebook: "https://www.facebook.com/arvind.thevar.90",
     instagram: "https://www.instagram.com/arvindthevar/",
     linkedin: "https://www.linkedin.com/in/arvind-thevar-9a87719a/",
@@ -72,7 +72,7 @@ const LEADERSHIP_TEAM = [
   {
     name: "Rahul Makasare",
     role: "Founder & Director",
-    image: "/technokraft-responsive-fix/assets/rahulmakasare.jpg",
+    image: "/technokraft-responsive-fix/assets/rahulmakasare.png",
     facebook: "https://www.facebook.com/r5star",
     instagram: "https://www.instagram.com/_ra_._one_",
     linkedin: "https://www.linkedin.com/in/rahulmakasare",
@@ -80,7 +80,7 @@ const LEADERSHIP_TEAM = [
   {
     name: "Sonali Thevar",
     role: "Director",
-    image: "/technokraft-responsive-fix/assets/sonalithevar.jpg",
+    image: "/technokraft-responsive-fix/assets/sonalithevar.png",
     facebook: "https://www.facebook.com/sonali.bhatt.9210",
     instagram: "https://www.instagram.com/bhattsonali",
     linkedin: "https://www.linkedin.com/in/sonalisharma4",
@@ -199,11 +199,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 transition={{ duration: 0.18, ease: "easeOut" }}
                 className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow bg-white"
               >
-                <div className="relative bg-slate-100 h-[410px] overflow-hidden bg-white">
+                <div className="relative bg-slate-100">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="block w-full h-auto object-cover object-center"
+                    className="block w-full h-auto object-cover"
                   />
                 </div>
 

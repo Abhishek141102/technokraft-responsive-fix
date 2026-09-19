@@ -18,6 +18,8 @@ import { ServiceDetail } from "./components/ServiceDetail";
 import { IndustryDetail } from "./components/IndustryDetail";
 import { PrivacyPolicy } from "./components/PrivacyPolicy";
 import { TermsOfUse } from "./components/Terms&Conditions";
+import { Assessment } from "./components/Assessment";
+
 
 export default function App() {
   // GitHub Pages-compatible routing using the URL hash.
@@ -34,6 +36,9 @@ export default function App() {
     if (hash.includes("#/industries/")) return "industry-detail";
     if (hash.startsWith("#/privacy-policy")) return "privacy-policy";
     if (hash.startsWith("#/terms-&-conditions")) return "terms-&-conditions";
+    if (hash.startsWith("#/assessment-test")) return "assessment-test";
+    if (hash.startsWith("#/assessment-result")) return "assessment-result";
+    if (hash.startsWith("#/assessment")) return "assessment";
 
     return "home";
   };
@@ -228,6 +233,11 @@ export default function App() {
         {currentPage === "privacy-policy" && <PrivacyPolicy />}
 
         {currentPage === "terms-&-conditions" && <TermsOfUse />}
+
+        {currentPage === "assessment" && (
+          <Assessment onNavigate={handleNavigate} />
+        )}
+
       </main>
 
       {/* Global Dark Theme Footer */}
