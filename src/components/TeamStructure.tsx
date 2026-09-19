@@ -11,7 +11,7 @@ const TEAM_STRUCTURE = [
   {
     name: "Dipak Mahajan",
     role: "UI/UX Designer",
-    image: "/technokraft-responsive-fix/assets/dipak_mahajan.jpeg",
+    image: "/technokraft-responsive-fix/assets/dipak_mahajan.jpg",
     linkedin: "https://www.linkedin.com/in/dipak-mahajan-417868229/",
   },
   {
