@@ -199,11 +199,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 transition={{ duration: 0.18, ease: "easeOut" }}
                 className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow bg-white"
               >
-                <div className="relative bg-slate-100">
+                <div className="relative bg-slate-100 h-[410px] overflow-hidden bg-white">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="block w-full h-auto object-contain"
+                    className="block w-full h-auto object-cover object-center"
                   />
                 </div>
 
