@@ -178,9 +178,7 @@ export default function App() {
             />
             <ProcessFramework />
             <MetricsBar />
-            <IndustriesGallery
-              onIndustryNavigate={handleIndustryNavigate}
-            />
+            <IndustriesGallery onIndustryNavigate={handleIndustryNavigate} />
             <GetInTouchSection />
           </>
         )}
@@ -216,8 +214,8 @@ export default function App() {
             onSelectProject={(projectId) => {
               setSelectedProjectId(projectId);
             }}
-            selectedGoalFilter={selectedGoalFilter}
-            selectedIndustryFilter={selectedIndustryFilter}
+            selectedGoalFilter="All Goals"
+            selectedIndustryFilter="All Industries"
           />
         )}
 
