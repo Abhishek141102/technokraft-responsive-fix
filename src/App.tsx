@@ -21,7 +21,7 @@ import { TermsOfUse } from "./components/Terms&Conditions";
 import { Assessment } from "./components/Assessment";
 import { Blogs } from "./components/Blogs";
 import { BlogDetail } from "./components/BlogDetails";
-
+import { Opportunities } from "./components/Opportunities";
 
 export default function App() {
   // GitHub Pages-compatible routing using the URL hash.
@@ -41,6 +41,7 @@ export default function App() {
     if (hash.startsWith("#/assessment")) return "assessment";
     if (hash.startsWith("#/blog-detail")) return "blog-detail";
     if (hash.startsWith("#/blogs")) return "blogs";
+    if (hash.startsWith("#/opportunities")) return "opportunities";
 
     return "home";
   };
@@ -244,6 +245,10 @@ export default function App() {
 
         {currentPage === "blog-detail" && (
           <BlogDetail onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === "opportunities" && (
+          <Opportunities onNavigate={handleNavigate} />
         )}
       </main>
 
