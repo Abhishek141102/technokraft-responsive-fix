@@ -19,6 +19,8 @@ import { IndustryDetail } from "./components/IndustryDetail";
 import { PrivacyPolicy } from "./components/PrivacyPolicy";
 import { TermsOfUse } from "./components/Terms&Conditions";
 import { Assessment } from "./components/Assessment";
+import { Blogs } from "./components/Blogs";
+import { BlogDetail } from "./components/BlogDetails";
 
 
 export default function App() {
@@ -36,9 +38,9 @@ export default function App() {
     if (hash.includes("#/industries/")) return "industry-detail";
     if (hash.startsWith("#/privacy-policy")) return "privacy-policy";
     if (hash.startsWith("#/terms-&-conditions")) return "terms-&-conditions";
-    if (hash.startsWith("#/assessment-test")) return "assessment-test";
-    if (hash.startsWith("#/assessment-result")) return "assessment-result";
     if (hash.startsWith("#/assessment")) return "assessment";
+    if (hash.startsWith("#/blog-detail")) return "blog-detail";
+    if (hash.startsWith("#/blogs")) return "blogs";
 
     return "home";
   };
@@ -238,6 +240,11 @@ export default function App() {
           <Assessment onNavigate={handleNavigate} />
         )}
 
+        {currentPage === "blogs" && <Blogs onNavigate={handleNavigate} />}
+
+        {currentPage === "blog-detail" && (
+          <BlogDetail onNavigate={handleNavigate} />
+        )}
       </main>
 
       {/* Global Dark Theme Footer */}

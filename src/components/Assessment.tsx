@@ -50,7 +50,7 @@ export const Assessment: React.FC<AssessmentProps> = ({ onNavigate }) => {
 
               <div className="mt-8">
                 <button
-                  onClick={() => onNavigate("assessment-test")}
+                  onClick={() => onNavigate("assessment")}
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all shadow-lg shadow-blue-600/20"
                 >
                   Start Assessment
@@ -254,7 +254,7 @@ export const Assessment: React.FC<AssessmentProps> = ({ onNavigate }) => {
 
             <div className="mt-8 pt-8 border-t border-slate-700">
               <button
-                onClick={() => onNavigate("assessment-test")}
+                onClick={() => onNavigate("assessment")}
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all"
               >
                 Start Test
