@@ -18,7 +18,6 @@ import { ServiceDetail } from "./components/ServiceDetail";
 import { IndustryDetail } from "./components/IndustryDetail";
 import { PrivacyPolicy } from "./components/PrivacyPolicy";
 import { TermsOfUse } from "./components/Terms&Conditions";
-import { Assessment } from "./components/Assessment";
 import { Blogs } from "./components/Blogs";
 import { BlogDetail } from "./components/BlogDetails";
 import { Opportunities } from "./components/Opportunities";
@@ -38,7 +37,6 @@ export default function App() {
     if (hash.includes("#/industries/")) return "industry-detail";
     if (hash.startsWith("#/privacy-policy")) return "privacy-policy";
     if (hash.startsWith("#/terms-&-conditions")) return "terms-&-conditions";
-    if (hash.startsWith("#/assessment")) return "assessment";
     if (hash.startsWith("#/blog-detail")) return "blog-detail";
     if (hash.startsWith("#/blogs")) return "blogs";
     if (hash.startsWith("#/opportunities")) return "opportunities";
@@ -236,10 +234,6 @@ export default function App() {
         {currentPage === "privacy-policy" && <PrivacyPolicy />}
 
         {currentPage === "terms-&-conditions" && <TermsOfUse />}
-
-        {currentPage === "assessment" && (
-          <Assessment onNavigate={handleNavigate} />
-        )}
 
         {currentPage === "blogs" && <Blogs onNavigate={handleNavigate} />}
 
